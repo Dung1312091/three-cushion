@@ -31,7 +31,17 @@ export function CameraRig() {
       if (++n < 4) id = requestAnimationFrame(kick);
     };
     kick();
-    return () => cancelAnimationFrame(id);
+    // A tab opened in the background never draws; redraw when it becomes visible.
+    const onVisible = () => {
+      if (document.visibilityState !== 'visible') return;
+      n = 0;
+      kick();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+    return () => {
+      cancelAnimationFrame(id);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
   }, [mode, size.width, size.height, invalidate]);
 
   useFrame((_, dt) => {

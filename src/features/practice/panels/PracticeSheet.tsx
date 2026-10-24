@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, RotateCcw, Search } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Segmented } from '@/components/ui/Segmented';
 import { t } from '@/i18n/vi';
@@ -157,12 +157,28 @@ export function BottomSheet() {
   );
 }
 
+/** Collapsed "Đặt bi": the two everyday actions without opening the sheet — reset first, then search. */
 function CollapsedPlace() {
   const solving = usePractice((s) => s.solving);
   const findShots = usePractice((s) => s.findShots);
+  const breakLayout = usePractice((s) => s.breakLayout);
   return (
-    <button type="button" disabled={solving} onClick={() => void findShots()} className="flex min-h-12 w-full cursor-pointer items-center justify-center rounded-xl bg-cloth text-base font-semibold text-white hover:bg-cloth-light disabled:opacity-60">
-      {solving ? t.practice.searching : t.practice.findShots}
-    </button>
+    <div className="grid grid-cols-2 gap-2">
+      <button
+        type="button"
+        onClick={breakLayout}
+        className="flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border border-line bg-surface-2 text-base font-semibold text-fg hover:bg-line/60"
+      >
+        <RotateCcw size={18} aria-hidden="true" /> {t.practice.reset}
+      </button>
+      <button
+        type="button"
+        disabled={solving}
+        onClick={() => void findShots()}
+        className="flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-cloth text-base font-semibold text-white hover:bg-cloth-light disabled:opacity-60"
+      >
+        <Search size={18} aria-hidden="true" /> {solving ? t.practice.searching : t.practice.findShots}
+      </button>
+    </div>
   );
 }

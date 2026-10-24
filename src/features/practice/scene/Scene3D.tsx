@@ -1,11 +1,11 @@
 import { AdaptiveDpr, PerformanceMonitor } from '@react-three/drei';
 import { Canvas, useThree } from '@react-three/fiber';
-import { useEffect, useRef } from 'react';
-import type { Group } from 'three';
+import { useEffect } from 'react';
 import { sceneApi, usePractice } from '../store';
 import { Balls3D, PlaybackClock } from './Balls3D';
 import { CameraRig } from './CameraRig';
 import { Cue3D } from './Cue3D';
+import { DragController } from './DragController';
 import { Table3D } from './Table3D';
 import { Trails } from './Trails';
 
@@ -26,7 +26,6 @@ export function Scene3D() {
   const playing = usePractice((s) => s.playback.playing);
   const dragging = usePractice((s) => !!s.drag);
   const camera = usePractice((s) => s.camera);
-  const group = useRef<Group>(null);
   const active = playing || dragging || camera !== 'top';
   return (
     <Canvas
@@ -47,11 +46,12 @@ export function Scene3D() {
       <directionalLight position={[-2, 2, -1.5]} intensity={0.35} />
       <CameraRig />
       <PlaybackClock />
-      <group ref={group} rotation-x={-Math.PI / 2} position={[-table.L / 2, 0, table.W / 2]}>
+      <DragController />
+      <group rotation-x={-Math.PI / 2} position={[-table.L / 2, 0, table.W / 2]}>
         {/* Only balls and their paths on the cloth — no ghosts, ellipses, fans or markers. */}
         <Table3D />
         <Trails />
-        <Balls3D groupRef={group} />
+        <Balls3D />
         <Cue3D />
       </group>
     </Canvas>

@@ -91,6 +91,7 @@ export const vi = {
     table: 'Bàn',
     skill: 'Trình độ',
     breakLayout: 'Xếp khai cuộc',
+    reset: 'Đặt lại bi',
     random: 'Đặt ngẫu nhiên',
     undo: 'Hoàn tác',
     redo: 'Làm lại',

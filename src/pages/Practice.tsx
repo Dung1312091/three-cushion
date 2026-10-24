@@ -54,7 +54,8 @@ export default function Practice() {
 
   return (
     <div className="room fixed inset-0 overflow-hidden bg-bg text-fg">
-      <div className="absolute inset-0">
+      {/* No text selection / iOS callout on the table while dragging balls. */}
+      <div className="absolute inset-0 touch-none select-none [-webkit-touch-callout:none] [-webkit-user-select:none]">
         <Scene3D />
       </div>
       <PracticeTopBar />

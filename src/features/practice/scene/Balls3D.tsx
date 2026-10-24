@@ -1,6 +1,6 @@
-import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
-import { CanvasTexture, Group, Mesh, Quaternion, Vector3 } from 'three';
+import { CanvasTexture, Mesh, Quaternion } from 'three';
 import { positionAt } from '@/engine/simulate';
 import type { BallId } from '@/engine/types';
 import { CUE_ANIM, playClock, usePractice } from '../store';
@@ -42,19 +42,16 @@ export function PlaybackClock() {
   return null;
 }
 
-/** The three balls: analytic positions + baked orientations during playback, draggable when placing (§13.3). */
-export function Balls3D({ groupRef }: { groupRef: React.RefObject<Group | null> }) {
+/** The three balls: analytic positions + baked orientations during playback. Dragging lives in DragController. */
+export function Balls3D() {
   const table = usePractice((s) => s.table);
   const balls = usePractice((s) => s.balls);
-  const tab = usePractice((s) => s.tab);
   const dragging = usePractice((s) => s.drag?.id);
   const R = table.ballRadius;
   const meshes = useRef<Record<BallId, Mesh | null>>({ white: null, yellow: null, red: null });
   const shadows = useRef<Record<BallId, Mesh | null>>({ white: null, yellow: null, red: null });
   const textures = useMemo(() => Object.fromEntries(IDS.map((id) => [id, ballTexture(...BALL_BASE[id])])) as Record<BallId, CanvasTexture>, []);
   const shadowTex = useMemo(() => shadowTexture(), []);
-  const { gl } = useThree();
-  const local = useMemo(() => new Vector3(), []);
 
   useFrame(() => {
     const s = usePractice.getState();
@@ -86,26 +83,6 @@ export function Balls3D({ groupRef }: { groupRef: React.RefObject<Group | null> 
     }
   });
 
-  const canDrag = tab === 'place' || tab === 'manual';
-
-  const toPhysics = (e: ThreeEvent<PointerEvent>): { x: number; y: number } | null => {
-    const g = groupRef.current;
-    if (!g) return null;
-    local.copy(e.point);
-    g.worldToLocal(local);
-    return { x: local.x, y: local.y };
-  };
-
-  const onDown = (id: BallId) => (e: ThreeEvent<PointerEvent>) => {
-    const s = usePractice.getState();
-    if (!canDrag) return;
-    e.stopPropagation();
-    (e.target as unknown as Element | null)?.setPointerCapture?.(e.pointerId);
-    gl.domElement.setPointerCapture?.(e.pointerId);
-    s.beginDrag(id);
-    s.setDrag({ id, clientX: e.nativeEvent.clientX, clientY: e.nativeEvent.clientY, touch: e.pointerType === 'touch' });
-  };
-
   return (
     <group>
       {IDS.map((id) => (
@@ -115,9 +92,6 @@ export function Balls3D({ groupRef }: { groupRef: React.RefObject<Group | null> 
               meshes.current[id] = m;
             }}
             position={[balls[id].x, balls[id].y, R]}
-            onPointerDown={onDown(id)}
-            onPointerOver={() => canDrag && (document.body.style.cursor = 'grab')}
-            onPointerOut={() => (document.body.style.cursor = '')}
           >
             <sphereGeometry args={[R, 48, 32]} />
             <meshStandardMaterial map={textures[id]} roughness={0.22} metalness={0} emissive={dragging === id ? '#335' : '#000'} />
@@ -133,57 +107,6 @@ export function Balls3D({ groupRef }: { groupRef: React.RefObject<Group | null> 
           </mesh>
         </group>
       ))}
-      <DragPlane toPhysics={toPhysics} />
     </group>
-  );
-}
-
-/** Invisible plane that receives drag moves (placing) and aim drags (manual mode). */
-function DragPlane({ toPhysics }: { toPhysics: (e: ThreeEvent<PointerEvent>) => { x: number; y: number } | null }) {
-  const table = usePractice((s) => s.table);
-  const aiming = useRef(false);
-  const { gl } = useThree();
-
-  const aimAt = (p: { x: number; y: number }) => {
-    const s = usePractice.getState();
-    const c = s.balls[s.cue];
-    if (Math.hypot(p.x - c.x, p.y - c.y) < 0.02) return;
-    s.setManual({ phi: Math.atan2(p.y - c.y, p.x - c.x) });
-  };
-
-  return (
-    <mesh
-      position={[table.L / 2, table.W / 2, table.ballRadius]}
-      onPointerDown={(e) => {
-        const s = usePractice.getState();
-        if (s.tab !== 'manual' || s.drag) return;
-        const p = toPhysics(e);
-        if (!p) return;
-        aiming.current = true;
-        gl.domElement.setPointerCapture?.(e.pointerId);
-        aimAt(p);
-      }}
-      onPointerMove={(e) => {
-        const s = usePractice.getState();
-        const p = toPhysics(e);
-        if (!p) return;
-        if (s.drag) {
-          s.moveBall(s.drag.id, p.x, p.y);
-          s.setDrag({ ...s.drag, clientX: e.nativeEvent.clientX, clientY: e.nativeEvent.clientY });
-        } else if (aiming.current) aimAt(p);
-      }}
-      onPointerUp={() => {
-        aiming.current = false;
-        const s = usePractice.getState();
-        if (s.drag) s.setDrag(undefined);
-      }}
-      onPointerCancel={() => {
-        aiming.current = false;
-        usePractice.getState().setDrag(undefined);
-      }}
-    >
-      <planeGeometry args={[table.L + 2, table.W + 2]} />
-      <meshBasicMaterial transparent opacity={0} depthWrite={false} />
-    </mesh>
   );
 }

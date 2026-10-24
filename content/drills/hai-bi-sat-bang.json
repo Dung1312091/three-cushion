@@ -1,0 +1,94 @@
+{
+  "id": "hai-bi-sat-bang",
+  "title": "Hai bi gần băng dài",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 2.6,
+      "y": 0.995
+    },
+    "yellow": {
+      "x": 3.307,
+      "y": 0.29
+    },
+    "red": {
+      "x": 5.54,
+      "y": 0.629
+    }
+  },
+  "strike": {
+    "phiDeg": -10,
+    "thetaDeg": 5,
+    "a": -0.2,
+    "b": 0.1,
+    "V0": 3.8
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 2.6,
+          "y": 0.995
+        },
+        {
+          "x": 5.429,
+          "y": 0.496
+        },
+        {
+          "x": 5.8,
+          "y": 0.09
+        },
+        {
+          "x": 7.91,
+          "y": 2.4
+        },
+        {
+          "x": 6.53,
+          "y": 3.91
+        },
+        {
+          "x": 3.373,
+          "y": 0.45
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 5.54,
+          "y": 0.629
+        },
+        {
+          "x": 6.826,
+          "y": 2.161
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 3.307,
+          "y": 0.29
+        },
+        {
+          "x": 3.225,
+          "y": 0.09
+        },
+        {
+          "x": 3.193,
+          "y": 0.167
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [],
+  "caption": "Hai bi mục tiêu cùng nằm gần băng dài dưới: chạm mỏng bi đỏ, bi cái đi dài – ngắn – dài về bi vàng sát băng.",
+  "level": "trung-cap"
+}

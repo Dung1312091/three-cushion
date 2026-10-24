@@ -1,0 +1,104 @@
+{
+  "id": "kiss-back",
+  "title": "Kiss-back: bi đỏ dội băng đá ngược bi cái",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 2.6,
+      "y": 2.2
+    },
+    "yellow": {
+      "x": 1.801,
+      "y": 3.046
+    },
+    "red": {
+      "x": 2.624,
+      "y": 3.621
+    }
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 2.6,
+          "y": 2.2
+        },
+        {
+          "x": 2.6,
+          "y": 3.45
+        },
+        {
+          "x": 2.55,
+          "y": 3.457
+        },
+        {
+          "x": 0.806,
+          "y": 0.09
+        },
+        {
+          "x": 0.09,
+          "y": 1.472
+        },
+        {
+          "x": 1.353,
+          "y": 3.91
+        },
+        {
+          "x": 1.721,
+          "y": 3.2
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 2.624,
+          "y": 3.62
+        },
+        {
+          "x": 2.665,
+          "y": 3.91
+        },
+        {
+          "x": 2.7,
+          "y": 3.66
+        },
+        {
+          "x": 3.1,
+          "y": 3.3
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 1.801,
+          "y": 3.046
+        },
+        {
+          "x": 2.031,
+          "y": 2.602
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "label",
+      "at": {
+        "x": 3.1,
+        "y": 3.6
+      },
+      "text": "Đá ngược"
+    }
+  ],
+  "caption": "Bi đỏ gần băng: chạm gần đầy, bi đỏ dội băng quay lại đá bi cái, bi cái đi dài – ngắn – dài về bi vàng.",
+  "level": "nang-cao"
+}

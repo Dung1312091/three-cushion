@@ -1,0 +1,119 @@
+{
+  "id": "50-30-20",
+  "title": "Bài thử bàn 50-30-20 (bộ 50)",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 0.6,
+      "y": 0.47
+    },
+    "yellow": {
+      "x": 5.498,
+      "y": 1.299
+    },
+    "red": {
+      "x": 5.478,
+      "y": 0.425
+    }
+  },
+  "strike": {
+    "phiDeg": 38,
+    "thetaDeg": 5,
+    "a": 0.3,
+    "b": 0.1,
+    "V0": 3.5
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 0.6,
+          "y": 0.47
+        },
+        {
+          "x": 5,
+          "y": 3.91
+        },
+        {
+          "x": 7.91,
+          "y": 2
+        },
+        {
+          "x": 6,
+          "y": 0.09
+        },
+        {
+          "x": 5.65,
+          "y": 0.44
+        },
+        {
+          "x": 5.528,
+          "y": 1.129
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 5.478,
+          "y": 0.425
+        },
+        {
+          "x": 4.681,
+          "y": 0.355
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 5.498,
+          "y": 1.299
+        },
+        {
+          "x": 5.359,
+          "y": 2.087
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "systemOverlay",
+      "systemId": "bo-50"
+    },
+    {
+      "type": "label",
+      "at": {
+        "x": 0.45,
+        "y": 0.2
+      },
+      "text": "Đầu 50"
+    },
+    {
+      "type": "label",
+      "at": {
+        "x": 5,
+        "y": 3.6
+      },
+      "text": "Ngắm 30"
+    },
+    {
+      "type": "label",
+      "at": {
+        "x": 6.35,
+        "y": 0.3
+      },
+      "text": "Về 20"
+    }
+  ],
+  "caption": "Đặt bi cái ở đầu 50, ngắm 30 trên băng dài đối diện, 2 tip ép phê thuận, lực trung bình: bi về đúng 20 thì bàn chuẩn.",
+  "level": "co-ban"
+}

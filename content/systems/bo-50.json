@@ -1,0 +1,298 @@
+{
+  "id": "bo-50",
+  "names": {
+    "vi": "Bộ 50",
+    "en": "Corner-5 / Diamond system",
+    "ko": "파이브 앤 하프 시스템",
+    "aliases": [
+      "bộ 50",
+      "bo 50",
+      "hệ 50",
+      "he 50",
+      "5½",
+      "5 rưỡi",
+      "corner 5",
+      "corner-5",
+      "five and a half",
+      "diamond system",
+      "bộ số 50"
+    ]
+  },
+  "family": "corner5_subtractive",
+  "equation": "Ngắm = Đầu + Sai số − Về",
+  "summary": "Bộ số cho thế sườn băng trước dài – ngắn – dài: lấy điểm đầu cộng sai số rồi trừ điểm về mong muốn để ra điểm ngắm trên băng dài đối diện. Chỉ đúng ở lực trung bình với 2 tip ép phê thuận.",
+  "railSequence": "LSL",
+  "firstContact": "rail",
+  "arrivalRailIndex": 3,
+  "aimReference": {
+    "mixedThreshold": 50
+  },
+  "numbering": {
+    "start": [
+      {
+        "value": 20,
+        "cushion": "L1",
+        "diamond": 6
+      },
+      {
+        "value": 25,
+        "cushion": "L1",
+        "diamond": 5
+      },
+      {
+        "value": 30,
+        "cushion": "L1",
+        "diamond": 4
+      },
+      {
+        "value": 35,
+        "cushion": "L1",
+        "diamond": 3
+      },
+      {
+        "value": 40,
+        "cushion": "L1",
+        "diamond": 2
+      },
+      {
+        "value": 45,
+        "cushion": "L1",
+        "diamond": 1
+      },
+      {
+        "value": 50,
+        "cushion": "L1",
+        "diamond": 0
+      },
+      {
+        "value": 50,
+        "cushion": "S1",
+        "diamond": 0
+      },
+      {
+        "value": 60,
+        "cushion": "S1",
+        "diamond": 1
+      },
+      {
+        "value": 70,
+        "cushion": "S1",
+        "diamond": 2
+      },
+      {
+        "value": 90,
+        "cushion": "S1",
+        "diamond": 3
+      },
+      {
+        "value": 100,
+        "cushion": "S1",
+        "diamond": 4
+      }
+    ],
+    "aim": [
+      {
+        "value": 0,
+        "cushion": "L2",
+        "diamond": 8
+      },
+      {
+        "value": 10,
+        "cushion": "L2",
+        "diamond": 7
+      },
+      {
+        "value": 20,
+        "cushion": "L2",
+        "diamond": 6
+      },
+      {
+        "value": 30,
+        "cushion": "L2",
+        "diamond": 5
+      },
+      {
+        "value": 40,
+        "cushion": "L2",
+        "diamond": 4
+      },
+      {
+        "value": 50,
+        "cushion": "L2",
+        "diamond": 3
+      },
+      {
+        "value": 70,
+        "cushion": "L2",
+        "diamond": 2
+      },
+      {
+        "value": 90,
+        "cushion": "L2",
+        "diamond": 1
+      }
+    ],
+    "arrival": [
+      {
+        "value": 0,
+        "cushion": "L1",
+        "diamond": 8
+      },
+      {
+        "value": 10,
+        "cushion": "L1",
+        "diamond": 7
+      },
+      {
+        "value": 20,
+        "cushion": "L1",
+        "diamond": 6
+      },
+      {
+        "value": 30,
+        "cushion": "L1",
+        "diamond": 5
+      },
+      {
+        "value": 40,
+        "cushion": "L1",
+        "diamond": 4
+      },
+      {
+        "value": 50,
+        "cushion": "L1",
+        "diamond": 3.5
+      },
+      {
+        "value": 60,
+        "cushion": "L1",
+        "diamond": 3
+      },
+      {
+        "value": 80,
+        "cushion": "L1",
+        "diamond": 2
+      }
+    ]
+  },
+  "base": {
+    "spinTips": 2,
+    "english": "thuận",
+    "speedNote": "Lực trung bình (5–6/10)"
+  },
+  "corrections": [
+    {
+      "variable": "start",
+      "points": [
+        [
+          20,
+          -6
+        ],
+        [
+          30,
+          -4
+        ],
+        [
+          35,
+          -3
+        ],
+        [
+          40,
+          -2
+        ],
+        [
+          45,
+          -1
+        ],
+        [
+          50,
+          0
+        ],
+        [
+          60,
+          3
+        ],
+        [
+          70,
+          5
+        ],
+        [
+          80,
+          8
+        ],
+        [
+          90,
+          10
+        ],
+        [
+          100,
+          13
+        ]
+      ],
+      "note": "Sai số cộng vào điểm đầu trước khi trừ điểm về (nguồn Bida Hoàng Anh Nam). Ví dụ đầu 30, về 20: ngắm 30 − 4 − 20 = 6. [CẦN HLV DUYỆT]",
+      "confidence": "single_source"
+    },
+    {
+      "variable": "spinTips",
+      "points": [
+        [
+          20,
+          6
+        ],
+        [
+          30,
+          4
+        ],
+        [
+          40,
+          2
+        ],
+        [
+          50,
+          0
+        ],
+        [
+          60,
+          -3
+        ],
+        [
+          70,
+          -5
+        ],
+        [
+          90,
+          -9
+        ]
+      ],
+      "note": "Chỉ áp dụng khi muốn về băng 4 với 3 tip ép phê thuận: hiệu chỉnh theo điểm đầu (Về + hiệu chỉnh = Đầu − Ngắm). Không dùng cho đường về băng 3 với 2 tip. [CẦN HLV DUYỆT]",
+      "confidence": "single_source"
+    }
+  ],
+  "validStartRange": [
+    20,
+    100
+  ],
+  "failureModes": [
+    "Đánh quá mạnh: bi cái mở góc rộng, về cao hơn bộ số tính.",
+    "Đánh quá nhẹ: bi cái trôi, ép phê ăn nhiều, về thấp và lệch.",
+    "Quên bù squirt khi đặt ép phê: bi cái lệch khỏi điểm ngắm ở băng 1, sai cả đường.",
+    "Ngắm sai quy ước: điểm đầu từ 50 trở lên phải ngắm xuyên nút trên khung, dưới 50 ngắm trước mặt nút.",
+    "Bi bẩn hoặc nỉ mới: ma sát khác, góc ở băng 2 và băng 3 thay đổi; cần làm bài thử 50-30-20 trước buổi tập.",
+    "Đọc điểm về sai chỗ: điểm về đọc ở mũi băng của băng thứ 3, không phải ở nút trên khung."
+  ],
+  "sources": [
+    {
+      "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+      "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+    },
+    {
+      "title": "Bida Thành Hiền – Hướng dẫn cách tính bộ số 50",
+      "url": "https://bidathanhhien.com/huong-dan-cach-tinh-bo-so-50-trong-bida-carom-3-bang-de-hieu"
+    },
+    {
+      "title": "Dr. Dave Alciatore – Technical proofs (squirt TP A.31)",
+      "url": "https://billiards.colostate.edu/technical_proofs/"
+    }
+  ],
+  "reviewStatus": "draft"
+}

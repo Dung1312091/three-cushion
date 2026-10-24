@@ -1,0 +1,64 @@
+---
+title: "Hệ giờ và tip: mô tả điểm chạm trên bi cái"
+category: diem-cham-va-xoay
+level: co-ban
+tags: ["điểm chạm", "hệ giờ", "tip", "xoáy"]
+aliases: ["he gio", "tip", "clock system", "diem cham", "cue tip position"]
+summary: "Cách app và HLV mô tả điểm chạm trên bi cái: hướng theo mặt đồng hồ, độ lệch theo số tip. Kèm giới hạn an toàn để không trượt cơ."
+reviewStatus: draft
+sources:
+  - title: "Dr. Dave Alciatore – Technical proofs (TP A.30, B.17)"
+    url: "https://billiards.colostate.edu/technical_proofs/"
+  - title: "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng"
+    url: "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+---
+
+## Vì sao cần một cách gọi thống nhất
+
+"Đánh ép phê phải một chút" có thể là 1 tip với người này và 2 tip với người khác. Khi HLV và học viên dùng chung một hệ, hướng dẫn trên app mới dùng được ngoài bàn thật.
+
+## Hệ giờ: hướng lệch tâm
+
+<Term id="he-gio" /> coi mặt bi cái nhìn từ phía người đánh như mặt đồng hồ:
+
+- **12 giờ**: trên tâm, tạo xoáy thượng (culê).
+- **6 giờ**: dưới tâm, tạo xoáy hạ (trô).
+- **3 giờ**: bên phải tâm, xoáy ngang phải.
+- **9 giờ**: bên trái tâm, xoáy ngang trái.
+- Các giờ xen giữa kết hợp hai loại. Ví dụ 2 giờ là phải và hơi trên tâm, kiểu điểm chạm phổ biến nhất trong 3 băng.
+
+## Tip: khoảng cách lệch tâm
+
+<Term id="tip" /> đo khoảng cách từ tâm bi tới điểm chạm, xấp xỉ bằng bề rộng đầu cơ. App quy đổi mặc định **1 tip = 0,15 bán kính bi**, tức 3 tip bằng 0,45 bán kính. [CẦN HLV DUYỆT: 1 tip bằng bao nhiêu bán kính theo cách HLV dạy; giá trị này chỉnh được trong Cài đặt]
+
+Một vài mốc:
+
+- **0 tip**: đánh tâm.
+- **1 tip**: lệch nhẹ, đủ để chỉnh góc băng nửa nút ở lực trung bình. [CHƯA KIỂM CHỨNG]
+- **2 tip**: mức chuẩn của bộ 50 cho đường về băng 3.
+- **3 tip**: gần sát giới hạn; dùng cho đường 4 băng hoặc cần bẻ góc nhiều.
+
+## Giới hạn trượt cơ
+
+Theo phân tích của Dr. Dave Alciatore, đầu cơ có phấn chỉ bám bi tới độ lệch khoảng một nửa bán kính. Vượt quá mức đó, cơ dễ trượt khỏi bi (miscue). App mặc định giới hạn 0,5 bán kính và cảnh báo khi phương án vượt quá.
+
+Để giảm nguy cơ trượt cơ khi đánh lệch nhiều:
+
+- Đánh phấn trước mỗi cú, phủ đều cả đầu cơ.
+- Giữ cơ gần nằm ngang.
+- Không tăng lực đột ngột khi đã đánh ở 3 tip.
+
+## Đọc một chỉ dẫn trên app
+
+Chỉ dẫn mẫu: "Điểm chạm 2 giờ, 2 tip (thuận), nâng cơ khoảng 5 độ, lực 5/10."
+
+- **2 giờ, 2 tip**: chạm phải và hơi trên tâm, lệch khoảng 0,3 bán kính.
+- **(thuận)**: xoáy ngang này là ép phê thuận ở băng 1 của đường đi đó.
+- **Nâng cơ 5 độ**: cơ thường.
+- **Lực 5/10**: xem bài "Thang lực".
+
+## Tập nhìn điểm chạm
+
+1. Dán một chấm nhỏ lên bi tập ở vị trí 1, 2, 3 tip theo hướng 3 giờ.
+2. Ngắm đầu cơ vào từng chấm, nhờ bạn nhìn từ bên cạnh xem đúng chưa.
+3. Sau đó tập mà không có chấm, kiểm tra bằng vết phấn trên bi.

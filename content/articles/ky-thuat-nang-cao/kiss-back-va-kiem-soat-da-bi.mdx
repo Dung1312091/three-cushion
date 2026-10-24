@@ -1,0 +1,64 @@
+---
+title: "Kiss-back và kiểm soát đá bi"
+category: ky-thuat-nang-cao
+level: nang-cao
+tags: ["đá bi", "kiss", "kiss-back", "tránh đá"]
+aliases: ["kiss back", "da bi", "kiss", "tranh da bi", "kiss out", "da an"]
+summary: "Đá bi làm mất điểm nhiều hơn bất kỳ lỗi nào khác ở trình độ trung cấp. Bài viết cách nhận ra nguy cơ, cách tránh, và cách dùng đá bi có chủ đích (kiss-back)."
+reviewStatus: draft
+diagrams: ["kiss-back"]
+sources:
+  - title: "Dr. Dave Alciatore – Technical proofs (TP A.14)"
+    url: "https://billiards.colostate.edu/technical_proofs/"
+  - title: "pooltool – event-based algorithm"
+    url: "https://ekiefl.github.io/2020/12/20/pooltool-alg/"
+---
+
+## Đá bi là gì
+
+<Term id="da-bi" /> (kiss) là mọi va chạm bi–bi ngoài hai lần chạm chủ đích: lần đầu bi cái chạm bi 1 và lần đầu bi cái chạm bi 2. Có ba loại kết quả:
+
+- **Đá hỏng** (kiss-out): không có va chạm đó thì đã ghi điểm.
+- **Đá ăn**: nhờ va chạm đó mới ghi điểm.
+- **Không ảnh hưởng**.
+
+Khi mô phỏng, app chạy lại cú đánh với va chạm phụ bị tắt để xác định nó thuộc loại nào, và hiển thị cảnh báo trên phương án.
+
+## Nhận ra nguy cơ
+
+Nguy cơ đá bi cao khi:
+
+- Bi 1 sau khi bị chạm chạy cắt qua đường bi cái sẽ đi ở băng 2 hoặc 3.
+- Bi 1 gần băng và bị chạm dày: nó dội băng và quay lại đúng vùng bi cái đang đi.
+- Hai bi mục tiêu gần nhau: bi 1 dễ đá vào bi 2, làm bi 2 rời chỗ.
+- Thế vòng bàn: cả bi cái và bi 1 cùng chạy quanh bàn.
+
+Cách kiểm tra nhanh: vẽ đường đi bi 1 (theo đường nối tâm lúc chạm) và đường bi cái, xem hai đường có cắt nhau không, và ước lượng hai bi tới chỗ giao nhau lúc nào.
+
+## Cách tránh
+
+- **Đổi độ dày**: mỏng hơn thì bi 1 đi chậm và lệch hướng khác; dày hơn thì bi 1 chạy xa nhanh hơn, có thể qua chỗ giao trước khi bi cái tới.
+- **Đổi lực**: đổi thời điểm hai bi tới chỗ giao.
+- **Đổi thứ tự bi**: chọn bi kia làm bi 1.
+- **Đổi họ đường**: chuyển từ bi trước sang băng trước hoặc ngược lại.
+
+## Kiss-back: dùng đá bi có chủ đích
+
+<Term id="kiss-back" /> là thế bi 1 nằm gần băng, bi cái chạm bi 1 gần đầy, bi 1 dội băng quay lại đá vào bi cái và đẩy bi cái theo hướng mới.
+
+<Diagram id="kiss-back" />
+
+Trong sơ đồ: bi đỏ cách băng dài trên khoảng một phần ba nút. Bi cái chạm gần đầy, gần như dừng tại chỗ; bi đỏ dội băng quay lại đá bi cái xuống. Bi cái đi băng dài dưới, băng ngắn trái, băng dài trên rồi tới bi vàng.
+
+Điểm then chốt:
+
+- Bi 1 càng gần băng, kiss-back càng dễ đoán.
+- Đánh dằn hoặc hơi trô để bi cái dừng gần điểm chạm, chờ bi 1 quay lại.
+- Hướng bi cái sau cú đá phụ thuộc độ dày lần chạm đầu và throw; sai vài độ ở bi 1 thành sai lớn ở hướng bi cái.
+- Lực vừa đủ: bi 1 phải còn đủ tốc độ khi quay lại.
+
+[CẦN HLV DUYỆT: điểm chạm và lực HLV dạy cho kiss-back]
+
+## Ghi nhớ
+
+Trước mỗi cú, ngoài câu hỏi "bi cái đi đâu", hãy hỏi thêm "bi 1 đi đâu". Chỉ riêng thói quen này đã giảm đáng kể số lần đá hỏng.

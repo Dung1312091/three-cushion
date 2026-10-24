@@ -1,0 +1,66 @@
+---
+title: "Chọn phương án: đọc thế bi trước khi đánh"
+category: chien-thuat
+level: co-ban
+tags: ["chọn phương án", "đọc thế bi", "họ đường", "chiến thuật"]
+aliases: ["chon phuong an", "doc the bi", "shot selection", "chon duong"]
+summary: "Một quy trình ngắn để đọc thế bi: xếp loại theo họ đường quen thuộc, loại bỏ phương án nguy hiểm, chọn cú có vùng ăn rộng nhất."
+reviewStatus: draft
+diagrams: ["the-suon-co-ban", "bi-truoc-nua-bi", "a-bang-co-ban"]
+sources:
+  - title: "CueCard – search and Monte Carlo for billiards"
+    url: "https://yoavshoham.net/_files/ugd/a1a3b1_5964a39d807a4fce8768f64cb69d6b25.pdf"
+  - title: "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng"
+    url: "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+---
+
+## Vì sao cần quy trình
+
+Người mới thường thấy một đường rồi đánh ngay. Người chơi khá xem ít nhất hai, ba đường, so sánh rồi mới chọn. Khác biệt lớn nhất giữa hai trình độ thường nằm ở bước này chứ không ở kỹ thuật ra cơ.
+
+## Bước 1: xếp loại theo họ đường
+
+Nhìn vị trí ba bi và hỏi: thế này thuộc họ nào mình đã biết?
+
+- **Thế sườn** (băng trước, dài – ngắn – dài): hai bi gần băng dài, bi cái ở nửa bàn kia. Dùng bộ 50.
+
+<Diagram id="the-suon-co-ban" />
+
+- **Bi trước nửa bi**: bi 1 gần bi cái, có hướng 30 độ dẫn ra một đường 3 băng.
+
+<Diagram id="bi-truoc-nua-bi" />
+
+- **A băng**: bi 1 bị chắn hoặc góc cắt quá mỏng.
+
+<Diagram id="a-bang-co-ban" />
+
+- **Thế cúp**, **Plus**, **vòng bàn**: các họ khác, mỗi họ có bài riêng.
+
+Mỗi họ có cách tính và lỗi quen thuộc riêng. Đặt được tên cho thế bi là đã giải được một nửa.
+
+## Bước 2: loại phương án nguy hiểm
+
+Loại hoặc hạ ưu tiên phương án khi:
+
+- Bi 1 chạy cắt đường bi cái: nguy cơ đá bi.
+- Cần chạm quá mỏng (dưới 1/8) hoặc ép phê quá giới hạn.
+- Cần lực mạnh trên 8/10.
+- Bi cái đi sát qua một bi khác ở băng đầu.
+
+## Bước 3: so sánh vùng ăn
+
+Vùng ăn là khoảng sai số cho phép mà vẫn ghi điểm. Đường có vùng ăn rộng thì chịu được lỗi tay.
+
+- Bi 2 nằm gần góc hoặc gần băng thường cho vùng ăn rộng, vì bi cái có thể tới từ nhiều hướng.
+- Hai bi mục tiêu gần nhau cho vùng ăn rộng hơn khi đường về đi qua cả hai.
+- Đường về gần song song với hướng nối hai bi mục tiêu cũng làm vùng ăn rộng.
+
+App mô phỏng mỗi phương án nhiều lần với nhiễu theo trình độ, hiển thị quạt đường đi để thấy vùng ăn rộng hay hẹp.
+
+## Bước 4: cân nhắc thế để lại
+
+Khi hai phương án tương đương về vùng ăn, chọn phương án gom bi tốt hơn hoặc để lại thế khó hơn cho đối thủ nếu trượt.
+
+## Bài tập
+
+Dựng 5 thế bi ngẫu nhiên. Với mỗi thế, trước khi đánh, nói to: họ đường, bi 1 là bi nào, điểm ngắm, điểm chạm, lực. Sau đó mở phòng tập trong app để so sánh với các phương án app đưa ra.

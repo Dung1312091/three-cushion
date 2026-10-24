@@ -1,0 +1,109 @@
+{
+  "id": "plus",
+  "names": {
+    "vi": "Plus (băng ngắn trước)",
+    "en": "Plus system",
+    "ko": "플러스 시스템",
+    "aliases": [
+      "plus",
+      "plus system",
+      "hệ plus",
+      "plus 2",
+      "ngắn dài dài",
+      "băng ngắn trước"
+    ]
+  },
+  "family": "plus_additive",
+  "equation": "Về = Bi cái + Băng 1",
+  "summary": "Bộ số cộng cho đường băng trước ngắn – dài – dài: điểm về ở băng 3 bằng điểm bi cái cộng điểm chạm băng ngắn đầu tiên. Bảng đánh số hiện là bản nháp tạm, chờ HLV cung cấp bảng đầy đủ.",
+  "railSequence": "SLL",
+  "firstContact": "rail",
+  "arrivalRailIndex": 3,
+  "aimReference": "through_diamond",
+  "numbering": {
+    "start": [
+      {
+        "value": 10,
+        "cushion": "L1",
+        "diamond": 7.5
+      },
+      {
+        "value": 20,
+        "cushion": "L1",
+        "diamond": 7
+      },
+      {
+        "value": 30,
+        "cushion": "L1",
+        "diamond": 6.5
+      },
+      {
+        "value": 40,
+        "cushion": "L1",
+        "diamond": 6
+      }
+    ],
+    "aim": [
+      {
+        "value": 20,
+        "cushion": "S2",
+        "diamond": 0.5
+      },
+      {
+        "value": 30,
+        "cushion": "S2",
+        "diamond": 1
+      },
+      {
+        "value": 40,
+        "cushion": "S2",
+        "diamond": 1.5
+      }
+    ],
+    "arrival": [
+      {
+        "value": 40,
+        "cushion": "L1",
+        "diamond": 3
+      },
+      {
+        "value": 50,
+        "cushion": "L1",
+        "diamond": 2
+      },
+      {
+        "value": 60,
+        "cushion": "L1",
+        "diamond": 1
+      }
+    ]
+  },
+  "base": {
+    "spinTips": 2,
+    "english": "thuận",
+    "speedNote": "Lực trung bình; xoáy thượng 2 tip. Rất nhạy với lực và xoáy [CẦN HLV DUYỆT]"
+  },
+  "corrections": [],
+  "validStartRange": [
+    30,
+    60
+  ],
+  "failureModes": [
+    "Bảng đánh số điểm đầu và điểm về trong file này là giữ chỗ, chưa có nguồn đối chiếu [CẦN HLV CUNG CẤP].",
+    "Rất nhạy với xoáy và lực: 1 nút trên băng ngắn tương đương khoảng 2 nút trên băng dài.",
+    "Nguồn mô tả \"không dùng khi đầu 0–30\" nhưng ví dụ lại dùng đầu 20: cần HLV làm rõ phạm vi áp dụng [CẦN HLV DUYỆT].",
+    "Tên \"Plus 2\" được các cộng đồng dùng cho ít nhất ba hệ khác nhau; kiểm tra đúng bảng số trước khi áp dụng.",
+    "Góc bàn không được coi là 0 trong thang này; đừng đếm như bộ 50."
+  ],
+  "sources": [
+    {
+      "title": "inprod.co.kr – 3쿠션 당구 플러스 시스템",
+      "url": "https://inprod.co.kr/3%EC%BF%A0%EC%85%98-%EB%8B%B9%EA%B5%AC-%ED%94%8C%EB%9F%AC%EC%8A%A4-%EC%8B%9C%EC%8A%A4%ED%85%9C/"
+    },
+    {
+      "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+      "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+    }
+  ],
+  "reviewStatus": "draft"
+}

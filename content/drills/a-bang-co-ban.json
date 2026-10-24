@@ -1,0 +1,99 @@
+{
+  "id": "a-bang-co-ban",
+  "title": "A băng cơ bản",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 2,
+      "y": 2.2
+    },
+    "yellow": {
+      "x": 6.106,
+      "y": 3.216
+    },
+    "red": {
+      "x": 3.792,
+      "y": 1.306
+    }
+  },
+  "strike": {
+    "phiDeg": -60.4,
+    "thetaDeg": 5,
+    "a": 0,
+    "b": 0.15,
+    "V0": 3.5
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 2,
+          "y": 2.2
+        },
+        {
+          "x": 3.2,
+          "y": 0.09
+        },
+        {
+          "x": 3.793,
+          "y": 1.133
+        },
+        {
+          "x": 7.91,
+          "y": 3.547
+        },
+        {
+          "x": 7.291,
+          "y": 3.91
+        },
+        {
+          "x": 6.255,
+          "y": 3.303
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 3.792,
+          "y": 1.306
+        },
+        {
+          "x": 3.779,
+          "y": 3.306
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 6.106,
+          "y": 3.216
+        },
+        {
+          "x": 5.675,
+          "y": 2.963
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "label",
+      "at": {
+        "x": 3.2,
+        "y": 0.35
+      },
+      "text": "Băng 1"
+    }
+  ],
+  "caption": "Bi cái chạm băng dài trước rồi mới vào bi đỏ, sau đó đi băng ngắn và băng dài trên tới bi vàng.",
+  "level": "co-ban"
+}

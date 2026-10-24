@@ -1,0 +1,103 @@
+{
+  "id": "gom-bi-co-ban",
+  "title": "Gom bi: ghi điểm và để ba bi gần nhau",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 3,
+      "y": 1
+    },
+    "yellow": {
+      "x": 5.863,
+      "y": 0.636
+    },
+    "red": {
+      "x": 4.663,
+      "y": 1.807
+    }
+  },
+  "strike": {
+    "phiDeg": 30,
+    "thetaDeg": 5,
+    "a": 0.15,
+    "b": 0.1,
+    "V0": 2.6
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 3,
+          "y": 1
+        },
+        {
+          "x": 4.5,
+          "y": 1.866
+        },
+        {
+          "x": 6.215,
+          "y": 3.91
+        },
+        {
+          "x": 7.91,
+          "y": 1.89
+        },
+        {
+          "x": 6.399,
+          "y": 0.09
+        },
+        {
+          "x": 6.013,
+          "y": 0.55
+        },
+        {
+          "x": 5.85,
+          "y": 0.95
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 4.663,
+          "y": 1.807
+        },
+        {
+          "x": 5.415,
+          "y": 1.533
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 5.863,
+          "y": 0.636
+        },
+        {
+          "x": 5.343,
+          "y": 0.936
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "label",
+      "at": {
+        "x": 5.3,
+        "y": 2.1
+      },
+      "text": "Vùng gom bi"
+    }
+  ],
+  "caption": "Chạm mỏng, lực nhẹ để bi đỏ chỉ lăn ngắn; bi cái đi ba băng chạm nhẹ bi vàng, ba bi dừng gần nhau.",
+  "level": "trung-cap"
+}

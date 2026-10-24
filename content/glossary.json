@@ -1,0 +1,948 @@
+{
+  "entries": [
+    {
+      "id": "bang",
+      "term": "Băng",
+      "aliases": [
+        "bang",
+        "cushion",
+        "thành băng"
+      ],
+      "en": "cushion / rail",
+      "definition": "Thành cao su bao quanh mặt bàn. Trong 3 băng, mỗi lần bi cái chạm thành bàn tính là một băng; cần ít nhất 3 băng trước khi chạm bi mục tiêu thứ hai.",
+      "origin": "Tiếng Pháp \"bande\"",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "UMB World Rules – Carom",
+          "url": "http://files.umb-carom.org/Public/Rules/Carom_Rules.pdf"
+        }
+      ]
+    },
+    {
+      "id": "bang-dai",
+      "term": "Băng dài",
+      "aliases": [
+        "bang dai",
+        "long rail"
+      ],
+      "en": "long rail",
+      "definition": "Hai thành bàn theo chiều dài, mỗi băng có 7 nút ở giữa. Ký hiệu L trong mã đường bi (ví dụ L-S-L).",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "UMB World Rules – Carom",
+          "url": "http://files.umb-carom.org/Public/Rules/Carom_Rules.pdf"
+        }
+      ]
+    },
+    {
+      "id": "bang-ngan",
+      "term": "Băng ngắn",
+      "aliases": [
+        "bang ngan",
+        "short rail",
+        "băng đầu"
+      ],
+      "en": "short rail",
+      "definition": "Hai thành bàn theo chiều rộng, mỗi băng có 3 nút ở giữa. Ký hiệu S trong mã đường bi.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "UMB World Rules – Carom",
+          "url": "http://files.umb-carom.org/Public/Rules/Carom_Rules.pdf"
+        }
+      ]
+    },
+    {
+      "id": "mui-bang",
+      "term": "Mũi băng",
+      "aliases": [
+        "mui bang",
+        "cushion nose"
+      ],
+      "en": "cushion nose",
+      "definition": "Mép cao su nhô ra nhất của băng, nơi bi thực sự chạm vào. Điểm về của bộ 50 đọc tại mũi băng, không phải tại nút trên khung.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "nut",
+      "term": "Nút",
+      "aliases": [
+        "nut",
+        "diamond",
+        "hột",
+        "điểm nút"
+      ],
+      "en": "diamond",
+      "definition": "Các chấm đánh dấu trên khung gỗ chia băng dài thành 8 phần và băng ngắn thành 4 phần bằng nhau. Mọi bộ số đều đọc vị trí theo nút.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        },
+        {
+          "title": "UMB World Rules – Carom",
+          "url": "http://files.umb-carom.org/Public/Rules/Carom_Rules.pdf"
+        }
+      ]
+    },
+    {
+      "id": "bo-so",
+      "term": "Bộ số",
+      "aliases": [
+        "bo so",
+        "hệ thống",
+        "system",
+        "hệ số"
+      ],
+      "en": "diamond system",
+      "definition": "Phương pháp quy đổi vị trí bi và điểm chạm băng ra con số để tính điểm ngắm, ví dụ bộ 50, Plus, cúp N-D-N.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "diem-dau",
+      "term": "Điểm đầu",
+      "aliases": [
+        "diem dau",
+        "start",
+        "điểm xuất phát"
+      ],
+      "en": "cue-ball start number",
+      "definition": "Giá trị bộ số tại chỗ đường kéo dài phía sau bi cái cắt băng, tức nơi bi cái \"xuất phát\" theo bộ số.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        },
+        {
+          "title": "Bida Thành Hiền – Cách tính bộ số 50",
+          "url": "https://bidathanhhien.com/huong-dan-cach-tinh-bo-so-50-trong-bida-carom-3-bang-de-hieu"
+        }
+      ]
+    },
+    {
+      "id": "diem-ngam",
+      "term": "Điểm ngắm",
+      "aliases": [
+        "diem ngam",
+        "điểm đánh",
+        "diem danh",
+        "aim"
+      ],
+      "en": "aim number",
+      "definition": "Giá trị bộ số trên băng thứ nhất mà bi cái phải chạm vào. Bộ 50: điểm ngắm bằng điểm đầu cộng sai số trừ điểm về.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        },
+        {
+          "title": "Bida Thành Hiền – Cách tính bộ số 50",
+          "url": "https://bidathanhhien.com/huong-dan-cach-tinh-bo-so-50-trong-bida-carom-3-bang-de-hieu"
+        }
+      ]
+    },
+    {
+      "id": "diem-ve",
+      "term": "Điểm về",
+      "aliases": [
+        "diem ve",
+        "điểm trúng",
+        "diem trung",
+        "arrival",
+        "finish"
+      ],
+      "en": "arrival / finish number",
+      "definition": "Giá trị bộ số tại nơi bi cái chạm băng thứ ba (hoặc thứ tư) theo tính toán.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        },
+        {
+          "title": "Bida Thành Hiền – Cách tính bộ số 50",
+          "url": "https://bidathanhhien.com/huong-dan-cach-tinh-bo-so-50-trong-bida-carom-3-bang-de-hieu"
+        }
+      ]
+    },
+    {
+      "id": "sai-so",
+      "term": "Sai số",
+      "aliases": [
+        "sai so",
+        "correction",
+        "hiệu chỉnh"
+      ],
+      "en": "start correction",
+      "definition": "Lượng cộng hoặc trừ thêm vào điểm đầu của bộ 50 để bù cho việc đường bi thực không đi đúng tỉ lệ tuyến tính. Ví dụ đầu 30 có sai số −4.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "goc-dau",
+      "term": "Góc dậu",
+      "aliases": [
+        "goc dau",
+        "góc A",
+        "corner"
+      ],
+      "en": "corner",
+      "definition": "Góc bàn dùng làm mốc tham chiếu của bộ 50 (giá trị 50 ở điểm đầu, 0 ở điểm ngắm và điểm về).",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "ep-phe",
+      "term": "Ép phê",
+      "aliases": [
+        "ep phe",
+        "áp phê",
+        "ap phe",
+        "effe",
+        "epphe",
+        "EP",
+        "english",
+        "xoáy ngang"
+      ],
+      "en": "side spin (english)",
+      "definition": "Đánh lệch trái hoặc phải tâm bi cái để tạo xoáy ngang. Xoáy ngang làm thay đổi góc bật ra khỏi băng; đếm theo tip lệch tâm.",
+      "origin": "Tiếng Pháp \"effet\"",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        },
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "ep-phe-thuan",
+      "term": "Ép phê thuận",
+      "aliases": [
+        "ep phe thuan",
+        "áp phê thuận",
+        "running english",
+        "xoáy thuận"
+      ],
+      "en": "running english",
+      "definition": "Xoáy ngang cùng chiều đi của bi dọc theo băng: bi bật ra khỏi băng với góc mở rộng hơn và chạy nhanh hơn. Lưu ý: có nguồn VN dùng \"thuận/nghịch\" để chỉ đánh trên/dưới tâm; app dùng nghĩa xoáy ngang.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        },
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "ep-phe-nghich",
+      "term": "Ép phê nghịch",
+      "aliases": [
+        "ep phe nghich",
+        "áp phê nghịch",
+        "ép phê dằn",
+        "reverse english",
+        "xoáy nghịch"
+      ],
+      "en": "reverse english",
+      "definition": "Xoáy ngang ngược chiều đi của bi dọc theo băng: góc bật ra hẹp lại, bi chậm đi. Trong bộ cúp N-D-N, ép phê âm được gọi là \"ép phê dằn\".",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "VNCarom – Bộ cúp ngắn dài ngắn",
+          "url": "https://vncarom.com/bo-cup-ngan-dai-ngan-bida-3-bang"
+        },
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "cule",
+      "term": "Culê",
+      "aliases": [
+        "cule",
+        "cu lê",
+        "coulé",
+        "follow",
+        "xoáy thượng",
+        "đánh trên"
+      ],
+      "en": "follow (topspin)",
+      "definition": "Đánh phía trên tâm bi cái để bi có xoáy lên; sau khi chạm bi mục tiêu, bi cái tiếp tục đi về phía trước.",
+      "origin": "Tiếng Pháp \"coulé\"",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "tro",
+      "term": "Trô",
+      "aliases": [
+        "tro",
+        "đờ trô",
+        "retro",
+        "kéo",
+        "giật",
+        "draw",
+        "xoáy hạ"
+      ],
+      "en": "draw (backspin)",
+      "definition": "Đánh phía dưới tâm bi cái để bi có xoáy ngược; sau khi chạm bi mục tiêu, bi cái bị kéo lùi lại.",
+      "origin": "Tiếng Pháp \"rétro\"",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "dan",
+      "term": "Dằn",
+      "aliases": [
+        "dan",
+        "stun",
+        "đánh dằn"
+      ],
+      "en": "stun",
+      "definition": "Cú đánh để bi cái trượt, gần như không xoáy dọc tại lúc chạm bi mục tiêu; bi cái đi theo đường tiếp tuyến, vuông góc với hướng bi mục tiêu (quy tắc 90 độ).",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "mat-xe",
+      "term": "Mát-xê",
+      "aliases": [
+        "mat xe",
+        "masse",
+        "massé",
+        "nhồi"
+      ],
+      "en": "massé",
+      "definition": "Dựng cơ cao (thường trên 45 độ) và đánh lệch tâm để bi cái chạy cong. Từ \"nhồi\" có nơi dùng cùng nghĩa nhưng chưa kiểm chứng.",
+      "origin": "Tiếng Pháp \"massé\"",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "cu-bo",
+      "term": "Cú bổ",
+      "aliases": [
+        "cu bo",
+        "bổ cơ",
+        "piqué",
+        "semi-massé"
+      ],
+      "en": "piqué / semi-massé",
+      "definition": "Nâng cơ vừa phải (khoảng 20–45 độ) đánh xuống bi cái, thường để tạo đường cong ngắn hoặc giật mạnh. Ranh giới với mát-xê tùy người gọi.",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "danh-day",
+      "term": "Đánh dày",
+      "aliases": [
+        "danh day",
+        "chạm dày",
+        "full hit"
+      ],
+      "en": "full hit",
+      "definition": "Chạm phần lớn bi mục tiêu (từ khoảng 3/4 bi trở lên); bi mục tiêu nhận nhiều lực, bi cái lệch ít.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "danh-mong",
+      "term": "Đánh mỏng",
+      "aliases": [
+        "danh mong",
+        "chạm mỏng",
+        "thin cut"
+      ],
+      "en": "thin cut",
+      "definition": "Chạm ít bi mục tiêu (khoảng 1/4 bi trở xuống); bi cái giữ gần hết tốc độ và đổi hướng ít.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "cham-trai-1-4",
+      "term": "Chạm trái 1/4",
+      "aliases": [
+        "cham trai 1/4",
+        "chạm 1/4 trái",
+        "1/4 trái"
+      ],
+      "en": "quarter-ball hit on the left",
+      "definition": "Bi cái chạm vào mép trái bi mục tiêu với độ dày khoảng 1/4 bi. Là điểm gốc của bộ cúp N-D-N.",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "VNCarom – Bộ cúp ngắn dài ngắn",
+          "url": "https://vncarom.com/bo-cup-ngan-dai-ngan-bida-3-bang"
+        }
+      ]
+    },
+    {
+      "id": "da-bi",
+      "term": "Đá bi",
+      "aliases": [
+        "da bi",
+        "đá",
+        "kiss",
+        "đụng bi"
+      ],
+      "en": "kiss",
+      "definition": "Va chạm bi–bi ngoài ý muốn (hoặc có chủ đích như kiss-back). Đá bi thường làm hỏng điểm, đôi khi lại \"đá ăn\".",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "pooltool – Theory",
+          "url": "https://ekiefl.github.io/2020/04/24/pooltool-theory/"
+        }
+      ]
+    },
+    {
+      "id": "a-bang",
+      "term": "A băng",
+      "aliases": [
+        "a bang",
+        "múa",
+        "bank",
+        "băng trước"
+      ],
+      "en": "bank shot (rail first)",
+      "definition": "Cú đánh bi cái chạm băng trước rồi mới chạm bi mục tiêu thứ nhất.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "bi-cai",
+      "term": "Bi cái",
+      "aliases": [
+        "bi cai",
+        "cue ball",
+        "bi của mình"
+      ],
+      "en": "cue ball",
+      "definition": "Bi mà người chơi đánh bằng cơ (trắng hoặc vàng).",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "UMB World Rules – Carom",
+          "url": "http://files.umb-carom.org/Public/Rules/Carom_Rules.pdf"
+        }
+      ]
+    },
+    {
+      "id": "bi-chu",
+      "term": "Bi chủ",
+      "aliases": [
+        "bi chu"
+      ],
+      "en": "cue ball (in cúp N-D-N)",
+      "definition": "Cách gọi bi cái trong bộ cúp N-D-N; vị trí bi chủ là một số hạng của công thức.",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "VNCarom – Bộ cúp ngắn dài ngắn",
+          "url": "https://vncarom.com/bo-cup-ngan-dai-ngan-bida-3-bang"
+        }
+      ]
+    },
+    {
+      "id": "bi-muc-tieu",
+      "term": "Bi mục tiêu",
+      "aliases": [
+        "bi muc tieu",
+        "object ball",
+        "bi 1",
+        "bi 2"
+      ],
+      "en": "object ball",
+      "definition": "Hai bi còn lại mà bi cái phải chạm. Bi chạm trước là bi 1, bi chạm sau là bi 2.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "UMB World Rules – Carom",
+          "url": "http://files.umb-carom.org/Public/Rules/Carom_Rules.pdf"
+        }
+      ]
+    },
+    {
+      "id": "carde",
+      "term": "Carde",
+      "aliases": [
+        "carde",
+        "cadre",
+        "trái C",
+        "bi carde"
+      ],
+      "en": "carde (object ball reference)",
+      "definition": "Trong bộ cúp N-D-N, vị trí bi carde là một số hạng cộng vào công thức. Nghĩa và cách đọc vị trí chưa thống nhất giữa các nguồn.",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "VNCarom – Bộ cúp ngắn dài ngắn",
+          "url": "https://vncarom.com/bo-cup-ngan-dai-ngan-bida-3-bang"
+        }
+      ]
+    },
+    {
+      "id": "gio-ga",
+      "term": "Giò gà",
+      "aliases": [
+        "gio ga"
+      ],
+      "en": "(local term)",
+      "definition": "Thuật ngữ dân gian có trong bảng thuật ngữ của báo cáo nghiên cứu; nghĩa chính xác (dạng đường bi hay thế bi) cần HLV xác nhận.",
+      "confidence": "unverified",
+      "sources": []
+    },
+    {
+      "id": "gom-bi",
+      "term": "Gom bi",
+      "aliases": [
+        "gom bi",
+        "position play",
+        "để bi"
+      ],
+      "en": "position play",
+      "definition": "Điều lực và độ dày để sau cú ghi điểm ba bi dừng ở vị trí thuận lợi cho cú tiếp theo.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "dot-thu-ban",
+      "term": "Dợt thử bàn",
+      "aliases": [
+        "dot thu ban",
+        "thử bàn",
+        "tập dợt"
+      ],
+      "en": "table test",
+      "definition": "Đánh vài cú chuẩn (ví dụ bài 50-30-20, cú lăn dài) trước khi chơi để biết bàn nhanh hay chậm, băng nảy nhiều hay ít.",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "the-suon",
+      "term": "Thế sườn",
+      "aliases": [
+        "the suon",
+        "thế bi sườn",
+        "corner five shot"
+      ],
+      "en": "side-rail (corner-5) shot",
+      "definition": "Thế băng trước đi dài – ngắn – dài quanh góc bàn, tính bằng bộ 50.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "the-cup",
+      "term": "Thế cúp",
+      "aliases": [
+        "the cup",
+        "cúp",
+        "cup"
+      ],
+      "en": "cut shot (short-long-short)",
+      "definition": "Thế chạm mỏng bi 1 để bi cái đi ngắn – dài – ngắn; tính bằng bộ cúp N-D-N.",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "VNCarom – Bộ cúp ngắn dài ngắn",
+          "url": "https://vncarom.com/bo-cup-ngan-dai-ngan-bida-3-bang"
+        }
+      ]
+    },
+    {
+      "id": "squirt",
+      "term": "Squirt",
+      "aliases": [
+        "squirt",
+        "đẩy lệch",
+        "lệch bi cái",
+        "deflection"
+      ],
+      "en": "squirt (cue-ball deflection)",
+      "definition": "Khi đánh lệch tâm, bi cái không đi đúng hướng cơ mà lệch sang phía ngược với phía đánh. Lệch tăng theo độ lệch tâm và tùy loại ngọn cơ.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "throw",
+      "term": "Throw",
+      "aliases": [
+        "throw",
+        "ném bi",
+        "lệch bi mục tiêu"
+      ],
+      "en": "throw",
+      "definition": "Ma sát giữa hai bi lúc chạm làm bi mục tiêu đi lệch khỏi đường nối tâm một vài độ, rõ nhất ở cú chậm và chạm nửa bi.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "bi-ma",
+      "term": "Bi ma",
+      "aliases": [
+        "bi ma",
+        "ghost ball"
+      ],
+      "en": "ghost ball",
+      "definition": "Vị trí tưởng tượng của bi cái tại thời điểm chạm bi mục tiêu; ngắm tâm bi cái vào tâm bi ma để có đúng độ dày.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "tip",
+      "term": "Tip",
+      "aliases": [
+        "tip",
+        "đầu cơ",
+        "ngọn cơ"
+      ],
+      "en": "tip offset",
+      "definition": "Đơn vị đo độ lệch tâm điểm chạm trên bi cái, xấp xỉ bề rộng đầu cơ. App mặc định 1 tip = 0,15 bán kính bi [CẦN HLV DUYỆT].",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "he-gio",
+      "term": "Hệ giờ",
+      "aliases": [
+        "he gio",
+        "mặt đồng hồ",
+        "clock"
+      ],
+      "en": "clock system",
+      "definition": "Mô tả điểm chạm trên bi cái như mặt đồng hồ: 12 giờ là trên tâm, 3 giờ là bên phải, 6 giờ là dưới tâm.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "bi-truoc",
+      "term": "Bi trước",
+      "aliases": [
+        "bi truoc",
+        "ball first"
+      ],
+      "en": "ball-first shot",
+      "definition": "Cú đánh bi cái chạm bi mục tiêu thứ nhất trước khi chạm băng.",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    },
+    {
+      "id": "kiss-back",
+      "term": "Kiss-back",
+      "aliases": [
+        "kiss back",
+        "đá ngược"
+      ],
+      "en": "kiss-back",
+      "definition": "Thế bi mục tiêu gần băng: bi mục tiêu dội băng quay lại đá vào bi cái, đẩy bi cái sang hướng mới để ghi điểm.",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Technical proofs",
+          "url": "https://billiards.colostate.edu/technical_proofs/"
+        }
+      ]
+    },
+    {
+      "id": "vong-ban",
+      "term": "Vòng bàn",
+      "aliases": [
+        "vong ban",
+        "around the table"
+      ],
+      "en": "around-the-table",
+      "definition": "Đường bi cái đi vòng quanh bàn qua cả bốn băng. Tên gọi tiếng Việt chưa kiểm chứng.",
+      "confidence": "unverified",
+      "sources": []
+    },
+    {
+      "id": "danh-o",
+      "term": "Đánh ô",
+      "aliases": [
+        "danh o",
+        "umbrella",
+        "ô"
+      ],
+      "en": "umbrella shot",
+      "definition": "Thế bi cái đi qua giữa hai bi mục tiêu, chạm bi 1 rồi đi các băng gần góc như hình chiếc ô. Tên gọi tiếng Việt chưa kiểm chứng.",
+      "confidence": "unverified",
+      "sources": []
+    },
+    {
+      "id": "the-nguoc",
+      "term": "Thế ngược",
+      "aliases": [
+        "the nguoc",
+        "đánh ngược",
+        "reverse"
+      ],
+      "en": "reverse shot",
+      "definition": "Thế dùng ép phê nghịch để bi cái quay ngược hướng sau băng thứ nhất. Tên gọi tiếng Việt chưa kiểm chứng.",
+      "confidence": "unverified",
+      "sources": []
+    },
+    {
+      "id": "nhoi",
+      "term": "Nhồi",
+      "aliases": [
+        "nhoi"
+      ],
+      "en": "(local term, possibly massé)",
+      "definition": "Có nơi dùng để chỉ cú mát-xê hoặc cú đánh xuống bi; nghĩa chưa kiểm chứng.",
+      "confidence": "unverified",
+      "sources": []
+    },
+    {
+      "id": "thang-luc",
+      "term": "Thang lực",
+      "aliases": [
+        "thang luc",
+        "lực",
+        "speed scale"
+      ],
+      "en": "speed scale",
+      "definition": "Cách đo lực đánh. App dùng thang 1–10 theo số chiều dài bàn bi cái lăn được nếu không va chạm [CẦN HLV DUYỆT].",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "title": "Dr. Dave Alciatore – Physical properties",
+          "url": "https://billiards.colostate.edu/faq/physics/physical-properties/"
+        }
+      ]
+    },
+    {
+      "id": "ngam-xuyen-nut",
+      "term": "Ngắm xuyên nút",
+      "aliases": [
+        "ngam xuyen nut",
+        "through the diamond"
+      ],
+      "en": "aim through the diamond",
+      "definition": "Đường ngắm đi qua chấm nút trên khung gỗ, phía sau mũi băng. Ngược lại là ngắm trước mặt nút (hình chiếu của nút trên mũi băng).",
+      "confidence": "verified",
+      "sources": [
+        {
+          "title": "Bida Hoàng Anh Nam – Bộ nút số bi 3 băng",
+          "url": "https://bidahoanganhnam.vn/bo-nut-so-bi-3-bang/"
+        }
+      ]
+    }
+  ],
+  "synonyms": [
+    [
+      "ép phê",
+      "áp phê",
+      "epphe",
+      "effe",
+      "EP",
+      "english"
+    ],
+    [
+      "culê",
+      "cule",
+      "cu lê",
+      "coulé",
+      "follow"
+    ],
+    [
+      "trô",
+      "đờ trô",
+      "retro",
+      "kéo",
+      "giật",
+      "draw"
+    ],
+    [
+      "mát-xê",
+      "masse",
+      "massé",
+      "nhồi"
+    ],
+    [
+      "carde",
+      "cadre",
+      "trái C"
+    ],
+    [
+      "đá",
+      "đá bi",
+      "kiss"
+    ],
+    [
+      "a băng",
+      "múa",
+      "bank"
+    ],
+    [
+      "bộ 50",
+      "hệ 50",
+      "5½",
+      "corner 5",
+      "diamond system"
+    ],
+    [
+      "dằn",
+      "stun"
+    ],
+    [
+      "bi ma",
+      "ghost ball"
+    ],
+    [
+      "điểm về",
+      "điểm trúng"
+    ],
+    [
+      "điểm ngắm",
+      "điểm đánh"
+    ],
+    [
+      "cúp n-d-n",
+      "cúp ngắn dài ngắn",
+      "ngắn dài ngắn"
+    ]
+  ],
+  "familyLabels": {
+    "rail+LSL": "Thế sườn (bộ 50)",
+    "rail+SLS": "Cúp N-D-N",
+    "rail+SLL": "Plus (băng ngắn trước)",
+    "rail+LLS": "Băng trước dài – dài – ngắn",
+    "rail+LSS": "Băng trước dài – ngắn – ngắn",
+    "rail+LLL": "Băng trước ba băng dài",
+    "rail+SSL": "Băng trước ngắn – ngắn – dài",
+    "rail+SSS": "Băng trước ba băng ngắn",
+    "rail+*": "Băng trước",
+    "ball+LSL": "Bi trước dài – ngắn – dài",
+    "ball+SLS": "Cúp N-D-N (bi trước)",
+    "ball+SLL": "Bi trước ngắn – dài – dài",
+    "ball+LLS": "Bi trước dài – dài – ngắn",
+    "ball+LSS": "Bi trước dài – ngắn – ngắn",
+    "ball+LLL": "Bi trước ba băng dài",
+    "ball+SSL": "Bi trước ngắn – ngắn – dài",
+    "ball+SSS": "Bi trước ba băng ngắn",
+    "ball+*": "Bi trước"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "id": "cup-ndn",
+  "names": {
+    "vi": "Cúp ngắn – dài – ngắn",
+    "en": "Short-long-short cut system",
+    "aliases": [
+      "cúp n-d-n",
+      "cup ndn",
+      "cúp ndn",
+      "cúp ngắn dài ngắn",
+      "ngắn dài ngắn",
+      "thế cúp",
+      "short long short"
+    ]
+  },
+  "family": "cup_additive",
+  "equation": "Về = Bi chủ + Carde + Ép phê",
+  "summary": "Bộ số cộng cho thế cúp: chạm trái 1/4 bi mục tiêu, bi cái (bi chủ) đi ngắn – dài – ngắn; cộng vị trí bi chủ, vị trí bi carde và số ép phê (thang nửa nút = 1) ra điểm về. Gốc: không ép phê thì bi chủ về thẳng góc dậu.",
+  "railSequence": "SLS",
+  "firstContact": "ball",
+  "arrivalRailIndex": 3,
+  "aimReference": "opposite_diamond",
+  "numbering": {
+    "start": [
+      {
+        "value": -4,
+        "cushion": "S2",
+        "diamond": 2
+      },
+      {
+        "value": -3,
+        "cushion": "S2",
+        "diamond": 1.5
+      },
+      {
+        "value": -2,
+        "cushion": "S2",
+        "diamond": 1
+      },
+      {
+        "value": -1,
+        "cushion": "S2",
+        "diamond": 0.5
+      },
+      {
+        "value": 0,
+        "cushion": "L2",
+        "diamond": 8
+      },
+      {
+        "value": 1,
+        "cushion": "L2",
+        "diamond": 7.5
+      },
+      {
+        "value": 2,
+        "cushion": "L2",
+        "diamond": 7
+      },
+      {
+        "value": 3,
+        "cushion": "L2",
+        "diamond": 6.5
+      },
+      {
+        "value": 4,
+        "cushion": "L2",
+        "diamond": 6
+      }
+    ],
+    "aim": [
+      {
+        "value": -4,
+        "cushion": "S2",
+        "diamond": 2
+      },
+      {
+        "value": -3,
+        "cushion": "S2",
+        "diamond": 1.5
+      },
+      {
+        "value": -2,
+        "cushion": "S2",
+        "diamond": 1
+      },
+      {
+        "value": -1,
+        "cushion": "S2",
+        "diamond": 0.5
+      },
+      {
+        "value": 0,
+        "cushion": "L2",
+        "diamond": 8
+      },
+      {
+        "value": 1,
+        "cushion": "L2",
+        "diamond": 7.5
+      },
+      {
+        "value": 2,
+        "cushion": "L2",
+        "diamond": 7
+      },
+      {
+        "value": 3,
+        "cushion": "L2",
+        "diamond": 6.5
+      },
+      {
+        "value": 4,
+        "cushion": "L2",
+        "diamond": 6
+      }
+    ],
+    "arrival": [
+      {
+        "value": 0,
+        "cushion": "S1",
+        "diamond": 4
+      },
+      {
+        "value": 1,
+        "cushion": "S1",
+        "diamond": 3.5
+      },
+      {
+        "value": 2,
+        "cushion": "S1",
+        "diamond": 3
+      },
+      {
+        "value": 3,
+        "cushion": "S1",
+        "diamond": 2.5
+      },
+      {
+        "value": 4,
+        "cushion": "S1",
+        "diamond": 2
+      }
+    ]
+  },
+  "base": {
+    "spinTips": 0,
+    "english": "thuận",
+    "speedNote": "Lực 3 băng (trung bình), chạm trái 1/4"
+  },
+  "corrections": [],
+  "validStartRange": [
+    -4,
+    4
+  ],
+  "failureModes": [
+    "Hướng và gốc đánh số trong file này là suy luận từ ví dụ của nguồn (băng ngắn mang giá trị âm, băng dài dương, nửa nút = 1); nguồn không nói rõ gốc 0 [CẦN HLV DUYỆT].",
+    "Chạm không đúng 1/4: dày hơn thì bi chủ đi ngắn, mỏng hơn thì bi chủ đi dài, bộ số không còn đúng.",
+    "Ép phê âm được gọi là \"dằn\" (ví dụ ép phê dằn 1); dễ nhầm với cú dằn (stun) trong cách gọi khác.",
+    "Đánh mạnh hơn lực 3 băng: bi chủ mở góc, về cao hơn tính toán.",
+    "Ví dụ thứ hai trong nguồn có chỗ cộng giá trị carde chưa nhất quán; cần HLV xác nhận cách đọc vị trí carde [CẦN HLV DUYỆT]."
+  ],
+  "sources": [
+    {
+      "title": "VNCarom – Bộ cúp ngắn dài ngắn bida 3 băng",
+      "url": "https://vncarom.com/bo-cup-ngan-dai-ngan-bida-3-bang"
+    }
+  ],
+  "reviewStatus": "draft"
+}

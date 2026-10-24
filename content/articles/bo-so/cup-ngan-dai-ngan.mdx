@@ -1,0 +1,62 @@
+---
+title: "Cúp ngắn – dài – ngắn (N-D-N)"
+category: bo-so
+level: trung-cap
+tags: ["cúp", "bộ số", "ngắn dài ngắn", "chạm trái 1/4", "bi trước"]
+aliases: ["cup ndn", "cup n-d-n", "cup ngan dai ngan", "the cup", "short long short"]
+railCode: "SLS"
+firstContact: "ball"
+systemIds: ["cup-ndn"]
+summary: "Bộ số cộng cho thế cúp: chạm trái 1/4, bi chủ đi ngắn – dài – ngắn. Điểm về bằng vị trí bi chủ cộng vị trí bi carde cộng số ép phê, thang nửa nút bằng 1."
+reviewStatus: draft
+diagrams: ["cup-ndn-co-ban"]
+sources:
+  - title: "VNCarom – Bộ cúp ngắn dài ngắn bida 3 băng"
+    url: "https://vncarom.com/bo-cup-ngan-dai-ngan-bida-3-bang"
+---
+
+## Thế cúp là gì
+
+<Term id="the-cup" /> là thế bi cái chạm mỏng bi mục tiêu thứ nhất, rồi đi **băng ngắn – băng dài – băng ngắn** sang đầu bàn bên kia. Bộ cúp N-D-N là cách tính của cộng đồng Việt cho thế này.
+
+## Gốc của bộ số
+
+Điểm khởi đầu của cả bộ là một cú chuẩn: <Term id="cham-trai-1-4" /> (chạm bi mục tiêu ở độ dày 1/4, phía trái), **không ép phê**, lực 3 băng. Khi đó <Term id="bi-chu" /> về thẳng góc dậu ở đầu bàn bên kia. Mọi thế khác được tính bằng cách cộng thêm ép phê để dời điểm về.
+
+## Công thức
+
+**Về = Bi chủ + Carde + Ép phê**
+
+- Thang **nửa nút = 1**: nửa nút là 1, một nút là 2, một nút rưỡi là 3, hai nút là 4.
+- Vị trí trên băng ngắn mang giá trị âm, trên băng dài mang giá trị dương (theo ví dụ của nguồn).
+- Ép phê dương ghi là "ép phê N", ép phê âm ghi là "ép phê dằn N".
+
+Ví dụ từ nguồn:
+
+1. Bi chủ 0, carde −3, muốn về 0: cần ép phê **+3**. Chạm trái 1/4, ép phê 3, lực 3 băng.
+2. Bi chủ 2, carde 1, tổng 3, muốn về 2: cần ép phê **−1**, tức "ép phê dằn 1".
+
+<SystemCalc id="cup-ndn" />
+
+<Diagram id="cup-ndn-co-ban" />
+
+## Những điểm chưa rõ
+
+Bài này là bản nháp. Một số điểm cần HLV xác nhận trước khi dùng:
+
+- Nguồn không nói rõ gốc 0 của thang đặt ở đâu. App tạm đặt 0 ở góc giữa băng ngắn và băng dài gần bi mục tiêu. [CẦN HLV DUYỆT]
+- <Term id="carde" /> là bi nào và đọc vị trí ra sao; ví dụ thứ hai trong nguồn có chỗ cộng giá trị chưa nhất quán. [CẦN HLV DUYỆT]
+- "Chạm trái 1/4" là chạm phía trái bi mục tiêu (bi cái lệch sang trái) hay đánh điểm trái trên bi cái. App hiểu là độ dày 1/4 ở phía trái bi mục tiêu. [CẦN HLV DUYỆT]
+- Mã họ thế bi của app ghi thế cúp là "bi trước, ngắn – dài – ngắn", còn bảng nhãn chung lại gắn nhãn "Cúp N-D-N" cho cả biến thể băng trước. [CẦN HLV DUYỆT]
+
+## Khác với bộ 50
+
+- Bộ 50 là băng trước, trừ điểm; cúp N-D-N là bi trước, cộng điểm.
+- Bộ 50 cố định 2 tip và đổi hướng ngắm; cúp N-D-N cố định độ dày 1/4 và đổi ép phê.
+- Thang của cúp N-D-N nhỏ hơn (nửa nút), nên mỗi đơn vị ép phê dời điểm về khoảng nửa nút. [CHƯA KIỂM CHỨNG]
+
+## Lỗi thường gặp
+
+- Chạm dày hơn 1/4: bi chủ đi ngắn. Mỏng hơn: bi chủ đi dài. Cả hai làm bộ số sai.
+- Đánh mạnh hơn lực 3 băng.
+- Nhầm "dằn" trong bộ này (ép phê âm) với cú dằn (stun).

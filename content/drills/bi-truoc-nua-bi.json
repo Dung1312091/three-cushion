@@ -1,0 +1,99 @@
+{
+  "id": "bi-truoc-nua-bi",
+  "title": "Bi trước nửa bi",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 1.5,
+      "y": 1.4
+    },
+    "yellow": {
+      "x": 4.111,
+      "y": 0.728
+    },
+    "red": {
+      "x": 3.963,
+      "y": 1.747
+    }
+  },
+  "strike": {
+    "phiDeg": 10,
+    "thetaDeg": 5,
+    "a": 0.15,
+    "b": 0.2,
+    "V0": 3.5
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 1.5,
+          "y": 1.4
+        },
+        {
+          "x": 3.8,
+          "y": 1.806
+        },
+        {
+          "x": 6.307,
+          "y": 3.91
+        },
+        {
+          "x": 7.91,
+          "y": 2.564
+        },
+        {
+          "x": 4.963,
+          "y": 0.09
+        },
+        {
+          "x": 4.274,
+          "y": 0.669
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 3.963,
+          "y": 1.747
+        },
+        {
+          "x": 5.373,
+          "y": 1.234
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 4.111,
+          "y": 0.728
+        },
+        {
+          "x": 3.641,
+          "y": 0.899
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "label",
+      "at": {
+        "x": 3.6,
+        "y": 2.15
+      },
+      "text": "Nửa bi"
+    }
+  ],
+  "caption": "Chạm nửa bi đỏ, bi cái lệch khoảng 30 độ lên băng dài, sang băng ngắn rồi về băng dài dưới gặp bi vàng.",
+  "level": "co-ban"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "the-nguoc",
+  "title": "Thế ngược (reverse)",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 5.2,
+      "y": 1.6
+    },
+    "yellow": {
+      "x": 7.352,
+      "y": 2.995
+    },
+    "red": {
+      "x": 4.228,
+      "y": 2.047
+    }
+  },
+  "strike": {
+    "phiDeg": 150,
+    "thetaDeg": 5,
+    "a": 0.3,
+    "b": -0.1,
+    "V0": 3
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 5.2,
+          "y": 1.6
+        },
+        {
+          "x": 4.4,
+          "y": 2.062
+        },
+        {
+          "x": 4.239,
+          "y": 3.91
+        },
+        {
+          "x": 5.629,
+          "y": 0.09
+        },
+        {
+          "x": 7.019,
+          "y": 3.91
+        },
+        {
+          "x": 7.293,
+          "y": 3.158
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 4.228,
+          "y": 2.047
+        },
+        {
+          "x": 2.435,
+          "y": 1.89
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 7.352,
+          "y": 2.995
+        },
+        {
+          "x": 7.489,
+          "y": 2.619
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "label",
+      "at": {
+        "x": 4.25,
+        "y": 3.6
+      },
+      "text": "Ép phê nghịch"
+    }
+  ],
+  "caption": "Bi cái dằn vào bi đỏ, đi gần vuông góc lên băng dài, ép phê nghịch bẻ bi quay ngược sang phải.",
+  "level": "trung-cap"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "danh-day-3-4",
+  "title": "Chạm 3/4 bi (đánh dày)",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 1.2,
+      "y": 1
+    },
+    "yellow": {
+      "x": 4.634,
+      "y": 0.654
+    },
+    "red": {
+      "x": 3.172,
+      "y": 1.672
+    }
+  },
+  "strike": {
+    "phiDeg": 20,
+    "thetaDeg": 5,
+    "a": 0.15,
+    "b": 0.25,
+    "V0": 3.8
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 1.2,
+          "y": 1
+        },
+        {
+          "x": 3,
+          "y": 1.655
+        },
+        {
+          "x": 5.6,
+          "y": 3.91
+        },
+        {
+          "x": 7.91,
+          "y": 2.3
+        },
+        {
+          "x": 5.3,
+          "y": 0.09
+        },
+        {
+          "x": 4.766,
+          "y": 0.542
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 3.172,
+          "y": 1.672
+        },
+        {
+          "x": 5.163,
+          "y": 1.864
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 4.634,
+          "y": 0.654
+        },
+        {
+          "x": 4.329,
+          "y": 0.912
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "label",
+      "at": {
+        "x": 3,
+        "y": 2
+      },
+      "text": "3/4 bi"
+    }
+  ],
+  "caption": "Chạm 3/4 bi đỏ với xoáy thượng nhẹ: bi cái lệch khoảng 20 độ, đi dài – ngắn – dài tới bi vàng.",
+  "level": "nhap-mon"
+}

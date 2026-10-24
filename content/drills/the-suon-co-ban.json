@@ -1,0 +1,119 @@
+{
+  "id": "the-suon-co-ban",
+  "title": "Thế sườn cơ bản (dài – ngắn – dài)",
+  "table": "UMB_MATCH",
+  "cue": "white",
+  "balls": {
+    "white": {
+      "x": 0.91,
+      "y": 2.52
+    },
+    "yellow": {
+      "x": 4.003,
+      "y": 1.184
+    },
+    "red": {
+      "x": 4.328,
+      "y": 0.327
+    }
+  },
+  "strike": {
+    "phiDeg": 29.7,
+    "thetaDeg": 5,
+    "a": 0.3,
+    "b": 0.1,
+    "V0": 3.5
+  },
+  "paths": [
+    {
+      "ball": "white",
+      "points": [
+        {
+          "x": 0.91,
+          "y": 2.52
+        },
+        {
+          "x": 3.34,
+          "y": 3.91
+        },
+        {
+          "x": 7.91,
+          "y": 1.6
+        },
+        {
+          "x": 5,
+          "y": 0.09
+        },
+        {
+          "x": 4.5,
+          "y": 0.35
+        },
+        {
+          "x": 4.069,
+          "y": 1.024
+        }
+      ],
+      "style": "solid"
+    },
+    {
+      "ball": "red",
+      "points": [
+        {
+          "x": 4.328,
+          "y": 0.327
+        },
+        {
+          "x": 3.634,
+          "y": 0.235
+        }
+      ],
+      "style": "dashed"
+    },
+    {
+      "ball": "yellow",
+      "points": [
+        {
+          "x": 4.003,
+          "y": 1.184
+        },
+        {
+          "x": 3.772,
+          "y": 1.738
+        }
+      ],
+      "style": "dashed"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "systemOverlay",
+      "systemId": "bo-50"
+    },
+    {
+      "type": "label",
+      "at": {
+        "x": 0.35,
+        "y": 2
+      },
+      "text": "Đầu 70"
+    },
+    {
+      "type": "label",
+      "at": {
+        "x": 3.4,
+        "y": 3.6
+      },
+      "text": "Ngắm 45"
+    },
+    {
+      "type": "label",
+      "at": {
+        "x": 5.3,
+        "y": 0.3
+      },
+      "text": "Về 30"
+    }
+  ],
+  "caption": "Băng trước theo bộ 50: đầu 70, cộng sai số 5, trừ về 30, ngắm 45 trên băng dài đối diện.",
+  "level": "co-ban"
+}

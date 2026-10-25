@@ -1,5 +1,10 @@
-import { FlaskConical, RotateCcw } from 'lucide-react';
+import { FlaskConical, RotateCcw, Square, Volume2 } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/Button';
+import { ambient } from '@/lib/ambient';
+import { playClipSteps, preferredEngine, primeAudio, rememberEngine, stopClips } from '@/lib/clipPlayer';
+import { canAutoSpeak, speakSteps, stopSpeaking, ttsSupported, vietnameseVoice } from '@/lib/speech';
+import { spokenSteps } from '../spokenSteps';
 import type { BallId, SimEvent } from '@/engine/types';
 import { CUSHION_VI, STROKE_VI } from '@/solver/instruct';
 import type { ShotOption } from '@/solver/types';
@@ -9,6 +14,152 @@ import { CUE_ANIM, usePractice } from '../store';
 import { ElevationFigure, TipWidget } from './TipWidget';
 
 const BALL_VI: Record<BallId, string> = { white: 'bi trắng', yellow: 'bi vàng', red: 'bi đỏ' };
+const TTS = ttsSupported();
+
+/**
+ * The instruction as a spoken checklist: read aloud automatically when an option opens
+ * (if enabled), with the current step highlighted so the player can glance and follow.
+ */
+function VoiceGuide({ option }: { option: ShotOption }) {
+  const autoSpeak = usePractice((s) => s.settings.autoSpeak);
+  const saveSettings = usePractice((s) => s.saveSettings);
+  const steps = useMemo(() => spokenSteps(option), [option]);
+  const [active, setActive] = useState(-1);
+  const [speaking, setSpeaking] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const playClips = useCallback(() => {
+    void playClipSteps(
+      steps.map((s) => s.clips),
+      {
+        onStep: (i) => {
+          setError(null);
+          setSpeaking(true);
+          setActive(i);
+        },
+        onDone: () => {
+          setSpeaking(false);
+          setActive(-1);
+        },
+        onError: (code) => {
+          setSpeaking(false);
+          setActive(-1);
+          setError(code);
+        },
+      },
+    );
+  }, [steps]);
+
+  /**
+   * Browser speech first (more natural) when it has a Vietnamese voice; if it is stuck,
+   * fails or has no such voice, switch to the recorded clips and remember that per device.
+   */
+  const play = useCallback(() => {
+    primeAudio(); // unlock Web Audio inside the gesture so a later fallback can still play
+    const useSpeech = TTS && preferredEngine() === 'speech' && !!vietnameseVoice(window.speechSynthesis.getVoices());
+    if (!useSpeech) {
+      playClips();
+      return;
+    }
+    speakSteps(
+      steps.map((s) => s.speech),
+      {
+        onStep: (i) => {
+          setError(null);
+          setSpeaking(true);
+          setActive(i);
+        },
+        onDone: () => {
+          setSpeaking(false);
+          setActive(-1);
+        },
+        onError: (code) => {
+          if (code === 'not-allowed') {
+            setSpeaking(false);
+            setActive(-1);
+            setError(code);
+            return;
+          }
+          console.info('[voice] speech engine unavailable (%s), using recorded clips', code);
+          rememberEngine('clips');
+          playClips();
+        },
+      },
+    );
+  }, [steps, playClips]);
+
+  const stop = () => {
+    stopSpeaking();
+    stopClips();
+    setSpeaking(false);
+    setActive(-1);
+  };
+
+  const onPlayClick = () => {
+    setError(null);
+    play();
+  };
+
+  useEffect(() => {
+    // Without a prior user gesture browsers refuse audio (and Chrome's speech queue can get stuck).
+    if (canAutoSpeak() && usePractice.getState().settings.autoSpeak) play();
+    return () => {
+      stopSpeaking();
+      stopClips();
+    };
+  }, [play]);
+
+  // Keep the background music under the voice.
+  useEffect(() => {
+    ambient.duck(speaking);
+    return () => ambient.duck(false);
+  }, [speaking]);
+
+  return (
+    <section className="rounded-xl bg-bg p-3" aria-label="Hướng dẫn từng bước">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <Button variant={speaking ? 'secondary' : 'primary'} onClick={speaking ? stop : onPlayClick}>
+          {speaking ? <Square size={18} aria-hidden="true" /> : <Volume2 size={18} aria-hidden="true" />}
+          {speaking ? 'Dừng đọc' : 'Nghe hướng dẫn'}
+        </Button>
+        <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm">
+          <input type="checkbox" checked={autoSpeak} onChange={(e) => void saveSettings({ autoSpeak: e.target.checked })} className="h-5 w-5 accent-[var(--accent)]" />
+          Tự đọc khi chọn cú
+        </label>
+      </div>
+      {error && (
+        <p role="alert" className="mt-2 rounded-lg bg-kiss/12 px-3 py-2 text-sm text-kiss">
+          {error === 'clips-missing'
+            ? 'Không tải được file âm thanh hướng dẫn. Kiểm tra kết nối rồi thử lại.'
+            : error === 'not-allowed'
+            ? 'Trình duyệt chưa cho phát tiếng. Bấm “Nghe hướng dẫn” thêm một lần nữa.'
+            : error === 'no-start'
+              ? 'Bộ đọc giọng nói của trình duyệt đang bị treo. Đóng các tab khác đang đọc, hoặc thoát hẳn trình duyệt (Cmd+Q) rồi mở lại. Safari cũng dùng được.'
+              : 'Không phát được tiếng.'}{' '}
+          <span className="num text-xs opacity-80">(mã lỗi: {error})</span>
+        </p>
+      )}
+      <ol className="mt-2 flex flex-col gap-1">
+        {steps.map((s, i) => (
+          <li
+            key={s.label}
+            aria-current={active === i ? 'step' : undefined}
+            className={cn(
+              'flex gap-3 rounded-lg border-l-4 px-3 py-2 transition-colors',
+              active === i ? 'border-accent bg-accent/15' : 'border-transparent',
+            )}
+          >
+            <span className="num w-5 shrink-0 text-lg font-semibold text-muted">{i + 1}</span>
+            <span className="min-w-0">
+              <span className="block text-xs font-semibold text-muted">{s.label}</span>
+              <span className="block text-[1.0625rem] font-medium leading-snug">{s.text}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
 
 function diamondOf(e: Extract<SimEvent, { type: 'ball-cushion' }>, L: number): number {
   const D = L / 8;
@@ -77,7 +228,7 @@ export function InstructionPanel({ option }: { option: ShotOption }) {
       : 'Theo đường ngắm';
   return (
     <div className="flex flex-col gap-4 pt-2">
-      <p className="text-[1.0625rem] leading-relaxed">{ins.summaryVi}</p>
+      <VoiceGuide option={option} />
       <div className="flex flex-wrap items-start justify-around gap-4 rounded-xl bg-bg p-3">
         <TipWidget a={ins.tip.a} b={ins.tip.b} tipUnitR={tipUnitR} limit={limit} size={132} />
         <ElevationFigure deg={ins.elevationDeg} />

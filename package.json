@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "bench": "tsx scripts/bench.ts",
-    "content:build": "tsx scripts/build-content.ts"
+    "content:build": "tsx scripts/build-content.ts",
+    "voice:build": "tsx scripts/gen-voice.ts"
   },
   "dependencies": {
     "@fontsource/barlow-condensed": "^5.3.0",

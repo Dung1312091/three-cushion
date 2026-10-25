@@ -22,9 +22,11 @@ export interface Settings {
   clothColor: string;
   /** Bộ số display scale: ×10 (corner = 50) or ×1 (Corner-5). */
   systemScale: 10 | 1;
+  /** Read the shot instruction aloud as soon as an option is chosen. */
+  autoSpeak: boolean;
 }
 
-export const DEFAULT_SETTINGS: Settings = { tipUnitR: 0.15, clothColor: '#1D5BB8', systemScale: 10 };
+export const DEFAULT_SETTINGS: Settings = { tipUnitR: 0.15, clothColor: '#1D5BB8', systemScale: 10, autoSpeak: true };
 
 async function listPrefix<T>(prefix: string): Promise<T[]> {
   if (!store) return [];

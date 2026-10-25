@@ -2,6 +2,7 @@ import { BookA, BookOpen, Crosshair, Hash, RectangleHorizontal, Search } from 'l
 import { Link, NavLink, Outlet, ScrollRestoration } from 'react-router';
 import { t } from '@/i18n/vi';
 import { cn } from '@/lib/cn';
+import { MusicToggle } from './MusicToggle';
 import { Wordmark } from './Wordmark';
 
 const NAV = [
@@ -39,13 +40,16 @@ export function AppShell() {
               </NavLink>
             ))}
           </nav>
-          <Link
-            to="/ly-thuyet?focus=1"
-            className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-surface-2 hover:text-fg md:hidden"
-            aria-label="Tìm kiếm"
-          >
-            <Search size={20} aria-hidden="true" />
-          </Link>
+          <div className="flex items-center gap-1">
+            <MusicToggle />
+            <Link
+              to="/ly-thuyet?focus=1"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-surface-2 hover:text-fg md:hidden"
+              aria-label="Tìm kiếm"
+            >
+              <Search size={20} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </header>
 

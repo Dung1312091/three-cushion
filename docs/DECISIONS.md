@@ -37,3 +37,8 @@ react 19.3.1 · react-router 8.5.0 · vite 8.3.5 · tailwindcss 4.3.3 · three 0
 
 ## ADR-008 — Thang lực
 `level` = số chiều dài bàn mà bi được đánh giữa tâm đi được dọc bàn, **tính cả mất năng lượng ở băng**, làm tròn 1–10. Đặc tả nói "không va chạm", nhưng với μr = 0,008 cách đó cho mọi cú 3 băng đều ≥ 10/10, không còn ý nghĩa. [CẦN HLV DUYỆT]
+
+## ADR-009 — Đọc hướng dẫn bằng giọng nói: Web Speech + đoạn tiếng thu sẵn
+- **Bối cảnh:** Web Speech API trên Chrome/macOS có thể treo (báo `speaking: true` nhưng không phát tiếng, kể cả với giọng mặc định); nhiều máy Android/Windows không có giọng tiếng Việt.
+- **Quyết định:** Ưu tiên `speechSynthesis` khi máy có giọng tiếng Việt (tự nhiên hơn). Nếu không bắt đầu đọc sau 1,5 s, lỗi, hoặc không có giọng Việt → phát bằng 150 đoạn tiếng thu sẵn (`public/voice/*.m4a`, ghép bằng Web Audio, cắt khoảng lặng) và nhớ lựa chọn theo thiết bị (`localStorage['tts-engine']`).
+- **Hệ quả:** Chạy offline và trên mọi trình duyệt; giọng ghép nghe hơi rời. Các đoạn được sinh bằng giọng macOS "Linh" (`pnpm voice:build`). **Giấy phép Apple chỉ cho phép dùng giọng hệ thống cho mục đích cá nhân, phi thương mại** — trước khi phát hành thương mại cần thay bằng giọng người thật (giữ nguyên tên file theo key trong `src/lib/voiceClips.ts`).

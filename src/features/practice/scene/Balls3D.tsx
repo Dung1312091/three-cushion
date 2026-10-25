@@ -2,7 +2,8 @@ import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import { CanvasTexture, Mesh, Quaternion } from 'three';
 import { positionAt } from '@/engine/simulate';
-import type { BallId } from '@/engine/types';
+import type { BallId, SimEvent } from '@/engine/types';
+import { sfxBallBall, sfxCushion, sfxStrike } from '@/lib/sfx';
 import { CUE_ANIM, playClock, usePractice } from '../store';
 import { BALL_BASE, ballTexture } from './ballTexture';
 
@@ -23,21 +24,56 @@ function shadowTexture(): CanvasTexture {
   return new CanvasTexture(c);
 }
 
-/** Advances the playback clock once per frame (runs before the other frame callbacks). */
+function firstEventAfter(events: SimEvent[], t: number): number {
+  let i = 0;
+  while (i < events.length && events[i].t <= t) i++;
+  return i;
+}
+
+/** Impact sounds scaled by the simulated speeds (m/s). */
+function soundFor(e: SimEvent, V0: number): void {
+  if (e.type === 'strike') sfxStrike(V0 / 6);
+  else if (e.type === 'ball-ball') sfxBallBall(e.relSpeed / 2);
+  else if (e.type === 'ball-cushion') sfxCushion(e.speedIn / 3.5);
+}
+
+/**
+ * Advances the playback clock once per frame (runs before the other frame callbacks) and
+ * plays the strike / ball / cushion sounds as playback time crosses each event.
+ */
 export function PlaybackClock() {
+  const cursor = useRef<{ shot: unknown; t: number; idx: number }>({ shot: null, t: 0, idx: 0 });
   useFrame((_, dt) => {
     const s = usePractice.getState();
     const c = s.current;
-    if (!c || !s.playback.playing) return;
-    playClock.t += Math.min(dt, 0.05) * s.playback.speed;
-    const end = c.result.tEnd;
-    if (playClock.t > end + 0.6) {
-      if (s.playback.loop) playClock.t = -CUE_ANIM;
-      else {
-        playClock.t = end;
-        usePractice.setState({ playback: { ...s.playback, playing: false } });
+    if (!c) return;
+    const cur = cursor.current;
+    const events = c.result.events;
+    if (cur.shot !== c) {
+      cur.shot = c;
+      cur.t = playClock.t;
+      cur.idx = firstEventAfter(events, playClock.t);
+    }
+    if (s.playback.playing) {
+      playClock.t += Math.min(dt, 0.05) * s.playback.speed;
+      const end = c.result.tEnd;
+      if (playClock.t > end + 0.6) {
+        if (s.playback.loop) playClock.t = -CUE_ANIM;
+        else {
+          playClock.t = end;
+          usePractice.setState({ playback: { ...s.playback, playing: false } });
+        }
       }
     }
+    const t = playClock.t;
+    // Paused, scrubbed or looped back: resync silently instead of replaying a burst of sounds.
+    if (!s.playback.playing || t < cur.t) {
+      cur.idx = firstEventAfter(events, t);
+      cur.t = t;
+      return;
+    }
+    while (cur.idx < events.length && events[cur.idx].t <= t) soundFor(events[cur.idx++], c.strike.V0);
+    cur.t = t;
   }, -1);
   return null;
 }

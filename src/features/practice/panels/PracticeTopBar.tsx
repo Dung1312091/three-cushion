@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import { PRESET_ORDER, PRESETS, makeTable, type TablePreset } from '@/engine/table';
 import { t } from '@/i18n/vi';
 import { cn } from '@/lib/cn';
+import { MUSIC_FEATURE, useSoundPrefs } from '@/lib/soundPrefs';
+import { MusicToggle } from '@/components/MusicToggle';
 import { usePractice, type CameraMode } from '../store';
 
 const PRESET_LABEL: Record<string, string> = {
@@ -18,6 +20,7 @@ function LayersMenu() {
   const [open, setOpen] = useState(false);
   const layers = usePractice((s) => s.layers);
   const toggle = usePractice((s) => s.toggleLayer);
+  const { musicOn, sfxOn, setMusic, setSfx } = useSoundPrefs();
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
@@ -48,6 +51,17 @@ function LayersMenu() {
               {label}
             </label>
           ))}
+          <div className="my-1 border-t border-line" />
+          {MUSIC_FEATURE && (
+            <label className="flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-2 hover:bg-surface-2">
+              <input type="checkbox" checked={musicOn} onChange={(e) => setMusic(e.target.checked)} className="h-5 w-5 accent-[var(--accent)]" />
+              Nhạc nền
+            </label>
+          )}
+          <label className="flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-2 hover:bg-surface-2">
+            <input type="checkbox" checked={sfxOn} onChange={(e) => setSfx(e.target.checked)} className="h-5 w-5 accent-[var(--accent)]" />
+            Tiếng cơ và bi va chạm
+          </label>
         </div>
       )}
     </div>
@@ -127,7 +141,8 @@ export function PracticeTopBar() {
           </button>
         ))}
       </div>
-      <div className="pointer-events-auto">
+      <div className="pointer-events-auto flex gap-2">
+        <MusicToggle tone="dark" className="hidden sm:flex" />
         <LayersMenu />
       </div>
     </div>

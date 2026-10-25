@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import { AppShell } from '@/components/AppShell';
 import { PageLoading } from '@/components/PageLoading';
+import { SoundManager } from '@/components/SoundManager';
 import { Home } from '@/pages/Home';
 import { TheoryList } from '@/pages/TheoryList';
 import { ArticlePage } from '@/pages/Article';
@@ -38,5 +39,10 @@ const router = createBrowserRouter([
 ]);
 
 export function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <SoundManager />
+      <RouterProvider router={router} />
+    </>
+  );
 }

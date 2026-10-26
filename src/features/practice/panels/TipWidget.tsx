@@ -9,10 +9,11 @@ export interface TipWidgetProps {
   limit: number;
   onChange?: (a: number, b: number) => void;
   size?: number;
+  caption?: boolean;
 }
 
 /** Cue-ball face (§13.5): 12 clock marks, 1/2/3-tip rings, red miscue ring, contact dot. Draggable when onChange is set. */
-export function TipWidget({ a, b, tipUnitR, limit, onChange, size = 168 }: TipWidgetProps) {
+export function TipWidget({ a, b, tipUnitR, limit, onChange, size = 168, caption = true }: TipWidgetProps) {
   const ref = useRef<SVGSVGElement>(null);
   const editable = !!onChange;
   const { clock, tips } = tipClock(a, b, tipUnitR);
@@ -80,9 +81,7 @@ export function TipWidget({ a, b, tipUnitR, limit, onChange, size = 168 }: TipWi
         <line x1={0} y1={-1} x2={0} y2={1} stroke="#0e1a2b" strokeOpacity={0.1} strokeWidth={0.01} />
         <circle cx={a} cy={-b} r={0.085} fill="#1d5bb8" stroke="#fff" strokeWidth={0.025} />
       </svg>
-      <figcaption className="num text-lg font-semibold">
-        {tips === 0 ? 'Giữa tâm' : `${numVi(clock)} giờ, ${numVi(tips)} tip`}
-      </figcaption>
+      {caption && <figcaption className="num text-lg font-semibold">{tips === 0 ? 'Giữa tâm' : `${numVi(clock)} giờ, ${numVi(tips)} tip`}</figcaption>}
     </figure>
   );
 }

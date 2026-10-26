@@ -5,11 +5,12 @@ import { restingBalls, sampleTrack, simulate, type SimResult } from '@/engine/si
 import { makeTable, type TableProfile } from '@/engine/table';
 import type { BallId, BallState, CueStrike, RuleOutcome, SimEvent } from '@/engine/types';
 import { classifyKisses } from '@/solver/classify';
+import { contactOf } from '@/solver/instruct';
 import { monteCarlo, tolerances } from '@/solver/robustness';
 import { solveIter } from '@/solver/solve';
 import type { Counter } from '@/solver/sweep';
 import { scores } from '@/solver/sweep';
-import type { ShotOption, SkillLevel, SolveRequest, SolveStats } from '@/solver/types';
+import type { BallContact, ShotOption, SkillLevel, SolveRequest, SolveStats } from '@/solver/types';
 
 let cancelledEpoch = 0;
 
@@ -24,6 +25,7 @@ export interface Prediction {
   rules: RuleOutcome;
   events: SimEvent[];
   tEnd: number;
+  contact?: BallContact;
 }
 
 export interface Analysis {
@@ -58,7 +60,7 @@ const api = {
   predict(table: TableProfile, balls: BallState[], cue: BallId, strike: CueStrike): Prediction {
     const result = simulate(table, balls, cue, strike, { recordSegments: true });
     const tracks = tracksOf(result, 30);
-    const p: Prediction = { tracks, rules: result.rules, events: result.events.filter((e) => e.type !== 'transition'), tEnd: result.tEnd };
+    const p: Prediction = { tracks, rules: result.rules, events: result.events.filter((e) => e.type !== 'transition'), tEnd: result.tEnd, contact: contactOf(table, result, cue) };
     return Comlink.transfer(p, Object.values(tracks).map((a) => a.buffer as ArrayBuffer));
   },
 

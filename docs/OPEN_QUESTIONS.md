@@ -16,3 +16,9 @@ Không chặn việc build — app đang chạy với giá trị mặc định, 
 12. **Hệ số mặc định** cho bàn ở CLB của anh (dùng làm "bàn chuẩn").
 13. **Nhiễu theo trình độ** (`SKILL_NOISE`) chưa có số đo người chơi nghiệp dư.
 14. **Thông số vật lý** μs, μr, e băng, μw, m/m_e (squirt) — đều là giá trị tham khảo, cần hiệu chuẩn theo bàn.
+15. **Từ vựng hướng dẫn** (`src/features/practice/vocab.ts`, ADR-010):
+    - Mức ép phê theo múi giờ có đúng cách anh dạy không, hay "ép phê 1/2/3" là số tip lệch ngang?
+    - Cầu tay: kín khi lực ≥ 6/10 hoặc culê, mở khi lực ≤ 3/10, dựng cao khi mát-xê.
+    - Ra cơ: đánh mổ khi dằn hoặc rủi ro đá bi ≥ 20%, còn lại thọc sâu.
+    - Góc cơ: song song < 3°, gần song song < 12°, chúi đuôi 12–35°, dựng > 45°.
+    - Cách ngắm 1/4 trái: app nói "ra ngoài mép nửa bán kính bi" (hình học bi ma) — có khớp cách anh dạy?

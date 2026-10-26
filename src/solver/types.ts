@@ -28,11 +28,27 @@ export interface SolveRequest {
   tipUnitR?: number;
 }
 
+/** How the cue ball met the first object ball, measured on the simulated path. */
+export interface BallContact {
+  object: BallId;
+  fraction: number;
+  label: string;
+  side: 'trái' | 'phải';
+  /** Cushions the cue ball touched before reaching the object ball. */
+  railsBefore: number;
+  /** Angle between the cue ball's line before impact and its path afterwards (to its next contact). */
+  cueDeflectDeg: number;
+  cueAfter: 'forward' | 'stop' | 'back';
+  /** Table lengths the object ball travels after being hit. */
+  objectTravelL: number;
+}
+
 export interface HumanInstruction {
   aim: {
     mode: 'ball-first' | 'rail-first';
     ghostBall?: { x: number; y: number };
     thickness?: { fraction: number; label: string; side: 'trái' | 'phải' };
+    contact?: BallContact;
     railPoint?: { cushion: CushionId; diamond: number; throughDiamond: boolean };
     systemNumber?: { systemId: string; value: number };
   };

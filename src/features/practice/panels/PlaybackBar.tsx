@@ -1,4 +1,4 @@
-import { Pause, Play, Repeat, SkipBack, SkipForward } from 'lucide-react';
+import { Pause, Play, Repeat, SkipBack, SkipForward, StepForward } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Segmented } from '@/components/ui/Segmented';
 import { cn } from '@/lib/cn';
@@ -11,7 +11,7 @@ export function PlaybackBar() {
   const playing = usePractice((s) => s.playback.playing);
   const speed = usePractice((s) => s.playback.speed);
   const loop = usePractice((s) => s.playback.loop);
-  const { setPlaying, seek, setSpeed, setLoop } = usePractice.getState();
+  const { setPlaying, seek, setSpeed, setLoop, continueFromShot } = usePractice.getState();
   const [t, setT] = useState(playClock.t);
 
   useEffect(() => {
@@ -80,14 +80,29 @@ export function PlaybackBar() {
             { value: '1', label: '1×' },
           ]}
         />
-        <button
-          type="button"
-          onClick={() => setLoop(!loop)}
-          aria-pressed={loop}
-          className={cn('inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg px-3 text-sm font-medium', loop ? 'bg-accent text-accent-fg' : 'text-muted hover:bg-surface-2')}
-        >
-          <Repeat size={16} aria-hidden="true" /> Lặp lại
-        </button>
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => setLoop(!loop)}
+            aria-pressed={loop}
+            aria-label="Lặp lại"
+            className={cn('inline-flex min-h-9 min-w-9 cursor-pointer items-center justify-center gap-1.5 rounded-lg px-2.5 text-sm font-medium', loop ? 'bg-accent text-accent-fg' : 'text-muted hover:bg-surface-2')}
+          >
+            <Repeat size={16} aria-hidden="true" />
+            <span className="hidden sm:inline">Lặp lại</span>
+          </button>
+          <button
+            type="button"
+            onClick={continueFromShot}
+            title="Đặt bi theo thế sau cú đánh này và tìm cách đánh tiếp"
+            className={cn(
+              'inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg px-3 text-sm font-semibold transition-colors',
+              t >= end ? 'bg-cloth text-white hover:bg-cloth-light' : 'border border-line text-fg hover:bg-surface-2',
+            )}
+          >
+            <StepForward size={16} aria-hidden="true" /> Đánh tiếp
+          </button>
+        </div>
       </div>
     </div>
   );

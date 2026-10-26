@@ -1,4 +1,5 @@
-import { Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronUp, Star } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { Pill } from '@/components/ui/Chip';
 import { Segmented } from '@/components/ui/Segmented';
 import type { BallId } from '@/engine/types';
@@ -11,6 +12,7 @@ import { InstructionPanel } from './InstructionPanel';
 
 const DOT: Record<BallId, string> = { white: 'bg-ball-white', yellow: 'bg-ball-yellow', red: 'bg-ball-red' };
 const ENGLISH: Record<string, string> = { running: 'ép phê thuận', reverse: 'ép phê nghịch', none: 'không ép phê' };
+const NAV_BTN = 'flex min-h-11 cursor-pointer items-center gap-1 rounded-xl px-3 text-sm font-semibold text-fg hover:bg-surface-2 disabled:cursor-default disabled:opacity-40 disabled:hover:bg-transparent';
 
 function Stars({ n }: { n: number }) {
   return (
@@ -29,7 +31,19 @@ export function ShotList() {
   const selectedId = usePractice((s) => s.selectedId);
   const skill = usePractice((s) => s.skill);
   const sort = usePractice((s) => s.sort);
-  const { setSkill, setSort, selectOption, findShots } = usePractice.getState();
+  const { setSkill, setSort, selectOption, closeOption, findShots } = usePractice.getState();
+  const items = useRef(new Map<string, HTMLLIElement>());
+  const prevSelected = useRef(selectedId);
+
+  // Bring the opened option's header to the top; on collapse keep that item in view so its neighbours are right there.
+  useEffect(() => {
+    const prev = prevSelected.current;
+    prevSelected.current = selectedId;
+    const el = items.current.get(selectedId ?? prev ?? '');
+    if (!el) return;
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    el.scrollIntoView({ block: selectedId ? 'start' : 'nearest', behavior });
+  }, [selectedId]);
 
   return (
     <div className="flex flex-col gap-3">
@@ -70,10 +84,17 @@ export function ShotList() {
         </div>
       )}
       <ul className="flex flex-col gap-2">
-        {options.map((o) => {
+        {options.map((o, i) => {
           const open = o.id === selectedId;
           return (
-            <li key={o.id} className={cn('rounded-2xl border', open ? 'border-accent bg-surface' : 'border-line')}>
+            <li
+              key={o.id}
+              ref={(el) => {
+                if (el) items.current.set(o.id, el);
+                else items.current.delete(o.id);
+              }}
+              className={cn('scroll-mt-2 rounded-2xl border', open ? 'border-accent bg-surface' : 'border-line')}
+            >
               <button type="button" onClick={() => void selectOption(o.id)} aria-expanded={open} className="flex w-full cursor-pointer items-start gap-3 p-3 text-left">
                 <span className={cn('mt-1.5 h-4 w-4 shrink-0 rounded-full ring-1 ring-black/25', DOT[o.firstObject])} aria-label={`Bi mục tiêu thứ nhất`} />
                 <span className="min-w-0 flex-1">
@@ -100,6 +121,23 @@ export function ShotList() {
                 <div className="border-t border-line px-3 pb-3">
                   <InstructionPanel option={o} />
                 </div>
+              )}
+              {open && (
+                // Sticks to the bottom of the scroll area while the long instruction is read, so switching never needs a scroll.
+                <nav aria-label="Chuyển cách đánh" className="sticky bottom-0 z-10 grid grid-cols-[1fr_auto_1fr] items-center gap-1 rounded-b-2xl border-t border-line bg-surface/95 p-1.5 backdrop-blur">
+                  <button type="button" disabled={i === 0} onClick={() => void selectOption(options[i - 1].id)} className={cn(NAV_BTN, 'justify-self-start')}>
+                    <ChevronLeft size={18} aria-hidden="true" /> Cách trước
+                  </button>
+                  <button type="button" onClick={closeOption} className={NAV_BTN}>
+                    <ChevronUp size={18} aria-hidden="true" /> Thu gọn
+                    <span className="num font-normal text-muted">
+                      {i + 1}/{options.length}
+                    </span>
+                  </button>
+                  <button type="button" disabled={i === options.length - 1} onClick={() => void selectOption(options[i + 1].id)} className={cn(NAV_BTN, 'justify-self-end')}>
+                    Cách sau <ChevronRight size={18} aria-hidden="true" />
+                  </button>
+                </nav>
               )}
             </li>
           );

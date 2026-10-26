@@ -6,15 +6,17 @@ import { playClipSteps, preferredEngine, primeAudio, rememberEngine, stopClips }
 import { canAutoSpeak, speakSteps, stopSpeaking, ttsSupported, vietnameseVoice } from '@/lib/speech';
 import { spokenSteps } from '../spokenSteps';
 import type { BallId, SimEvent } from '@/engine/types';
-import { CUSHION_VI, STROKE_VI } from '@/solver/instruct';
-import type { ShotOption } from '@/solver/types';
+import { CUSHION_VI } from '@/solver/instruct';
+import type { BallContact, HumanInstruction, ShotOption } from '@/solver/types';
 import { numVi } from '@/lib/format';
 import { cn } from '@/lib/cn';
 import { CUE_ANIM, usePractice } from '../store';
+import { afterContactLines, aimPointText, BALL_VI, bridgeOf, cueAngleOf, deliveryOf, spinOf, THICKNESS, thicknessName } from '../vocab';
+import { ThicknessFigure } from './ThicknessFigure';
 import { ElevationFigure, TipWidget } from './TipWidget';
 
-const BALL_VI: Record<BallId, string> = { white: 'bi trắng', yellow: 'bi vàng', red: 'bi đỏ' };
 const TTS = ttsSupported();
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /**
  * The instruction as a spoken checklist: read aloud automatically when an option opens
@@ -23,7 +25,8 @@ const TTS = ttsSupported();
 function VoiceGuide({ option }: { option: ShotOption }) {
   const autoSpeak = usePractice((s) => s.settings.autoSpeak);
   const saveSettings = usePractice((s) => s.saveSettings);
-  const steps = useMemo(() => spokenSteps(option), [option]);
+  const tipUnitR = usePractice((s) => s.settings.tipUnitR);
+  const steps = useMemo(() => spokenSteps(option, tipUnitR), [option, tipUnitR]);
   const [active, setActive] = useState(-1);
   const [speaking, setSpeaking] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -216,49 +219,137 @@ export function EventTimeline() {
   );
 }
 
-export function InstructionPanel({ option }: { option: ShotOption }) {
+/** One of the three things a player sets at the table: object-ball contact, cue-ball contact, cue. */
+export function Section({ step, title, children }: { step: number; title: string; children: React.ReactNode }) {
+  return (
+    <section className="rounded-xl bg-bg p-3" aria-label={title}>
+      <h4 className="mb-2.5 flex items-center gap-2 text-sm font-semibold text-muted">
+        <span className="num flex h-6 w-6 items-center justify-center rounded-full bg-cloth text-xs font-bold text-white">{step}</span>
+        {title}
+      </h4>
+      {children}
+    </section>
+  );
+}
+
+export function Notes({ lines, className }: { lines: string[]; className?: string }) {
+  return (
+    <ul className={cn('mt-1.5 flex flex-col gap-1 text-sm leading-snug text-muted', className)}>
+      {lines.map((l) => (
+        <li key={l} className="flex gap-1.5">
+          <span aria-hidden="true">•</span>
+          <span>{l}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function Field({ label, value, note }: { label: string; value: React.ReactNode; note?: string }) {
+  return (
+    <div>
+      <dt className="text-xs font-semibold text-muted">{label}</dt>
+      <dd className="font-semibold leading-snug">{value}</dd>
+      {note && <dd className="text-sm leading-snug text-muted">{note}</dd>}
+    </div>
+  );
+}
+
+/** "1/2 trái vào bên trái bi đỏ" + where the cue-ball centre points + what the simulation saw afterwards. */
+export function BallAim({ contact: c, cue }: { contact: BallContact; cue: BallId }) {
+  const th = thicknessName(c.fraction, c.label);
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-wrap items-center gap-3">
+        <ThicknessFigure fraction={c.fraction} side={c.side} object={c.object} cue={cue} width={136} />
+        <div className="min-w-44 flex-1">
+          <p className="text-lg font-semibold leading-snug">
+            {th.name}
+            {th.key === 'full' ? ' vào' : `, chạm bên ${c.side}`} {BALL_VI[c.object]}
+            {th.exact && <span className="num ml-1.5 text-sm font-normal text-muted">(≈ {th.exact})</span>}
+          </p>
+          <p className="text-[0.9375rem] leading-snug">{aimPointText(c.fraction, c.side, c.object)}</p>
+          <Notes lines={[THICKNESS[th.key].note]} />
+        </div>
+      </div>
+      <div className="rounded-lg border border-line px-3 py-2">
+        <p className="text-xs font-semibold text-muted">Sau va chạm (mô phỏng)</p>
+        <Notes lines={afterContactLines(c)} className="mt-0.5 text-fg" />
+      </div>
+    </div>
+  );
+}
+
+/** The cue-ball face plus the club name of the contact and what it does. */
+export function CueBallContact({ a, b, english, ballFirst }: { a: number; b: number; english?: HumanInstruction['english']; ballFirst: boolean }) {
   const tipUnitR = usePractice((s) => s.settings.tipUnitR);
   const limit = usePractice((s) => s.table.physics.miscueLimit);
+  const spin = spinOf(a, b, tipUnitR, english, ballFirst);
+  return (
+    <div className="flex flex-wrap items-start gap-4">
+      <TipWidget a={a} b={b} tipUnitR={tipUnitR} limit={limit} size={112} caption={false} />
+      <div className="min-w-40 flex-1">
+        <p className="text-lg font-semibold leading-snug">{spin.name}</p>
+        <p className="num text-[0.9375rem] font-medium text-accent">{spin.where}</p>
+        <Notes lines={spin.effects} />
+      </div>
+    </div>
+  );
+}
+
+export function InstructionPanel({ option }: { option: ShotOption }) {
+  const tipUnitR = usePractice((s) => s.settings.tipUnitR);
+  const cue = usePractice((s) => s.cue);
   const { tryVariant, playShot } = usePractice.getState();
   const ins = option.instruction;
-  const aimText = ins.aim.thickness
-    ? `Chạm ${ins.aim.thickness.side} ${ins.aim.thickness.label} ${BALL_VI[option.firstObject]}`
-    : ins.aim.railPoint
-      ? `${CUSHION_VI[ins.aim.railPoint.cushion]}, nút ${numVi(ins.aim.railPoint.diamond)} (${ins.aim.railPoint.throughDiamond ? 'xuyên nút' : 'trước mặt nút'})`
-      : 'Theo đường ngắm';
+  const ballFirst = option.family.firstContact === 'ball';
+  const contact = ins.aim.contact;
+  const spin = spinOf(ins.tip.a, ins.tip.b, tipUnitR, ins.english, ballFirst);
+  const angle = cueAngleOf(ins.elevationDeg);
+  const bridge = bridgeOf(ins.speed.level, ins.stroke, spin.vertical);
+  const delivery = deliveryOf(ins.stroke, spin, option.kissRisk);
+  const rail = ins.aim.railPoint;
   return (
-    <div className="flex flex-col gap-4 pt-2">
+    <div className="flex flex-col gap-3 pt-2">
       <VoiceGuide option={option} />
-      <div className="flex flex-wrap items-start justify-around gap-4 rounded-xl bg-bg p-3">
-        <TipWidget a={ins.tip.a} b={ins.tip.b} tipUnitR={tipUnitR} limit={limit} size={132} />
-        <ElevationFigure deg={ins.elevationDeg} />
-      </div>
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-[0.9375rem]">
-        <div className="col-span-2">
-          <dt className="text-sm text-muted">Hướng ngắm</dt>
-          <dd className="font-semibold">
-            {aimText}
-            {ins.aim.systemNumber && <span className="num ml-2 text-accent">bộ số {ins.aim.systemNumber.value}</span>}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-sm text-muted">Lực</dt>
-          <dd className="font-semibold">
-            <span className="num text-xl">{ins.speed.level}/10</span> <span className="text-sm font-normal text-muted">{numVi(ins.speed.V0)} m/s đầu cơ</span>
-          </dd>
-        </div>
-        <div>
-          <dt className="text-sm text-muted">Kiểu đánh</dt>
-          <dd className="font-semibold">
-            {STROKE_VI[ins.stroke]}, ép phê {ins.english}
-          </dd>
-        </div>
-        {option.system && (
-          <div className="col-span-2">
-            <dt className="text-sm text-muted">Bộ số</dt>
-            <dd className="num text-lg font-semibold">{option.system.text}</dd>
+      <Section step={1} title={ballFirst ? 'Bi mục tiêu' : 'Ngắm băng'}>
+        {ballFirst && contact ? (
+          <BallAim contact={contact} cue={cue} />
+        ) : (
+          <div>
+            <p className="text-lg font-semibold leading-snug">
+              {rail ? `${capitalize(CUSHION_VI[rail.cushion])}, nút ${numVi(rail.diamond)}` : 'Theo đường ngắm trên bàn'}
+              {ins.aim.systemNumber && <span className="num ml-2 text-accent">bộ số {ins.aim.systemNumber.value}</span>}
+            </p>
+            {rail && <p className="text-[0.9375rem]">Ngắm tâm bi cái {rail.throughDiamond ? 'xuyên qua nút (nút trên thành băng)' : 'vào điểm trên mũi băng ngay trước mặt nút'}.</p>}
+            {option.system && <p className="num mt-1 font-semibold">{option.system.text}</p>}
+            {contact && (
+              <Notes
+                lines={[`Sau ${contact.railsBefore} băng, bi cái chạm ${thicknessName(contact.fraction, contact.label).name.toLowerCase()} ${BALL_VI[contact.object]}.`]}
+              />
+            )}
           </div>
         )}
+      </Section>
+      <Section step={2} title="Bi cái — điểm chạm">
+        <CueBallContact a={ins.tip.a} b={ins.tip.b} english={ins.english} ballFirst={ballFirst} />
+      </Section>
+      <Section step={3} title="Cơ & ra cơ">
+        <div className="flex flex-wrap items-start gap-3">
+          <ElevationFigure deg={ins.elevationDeg} />
+          <dl className="grid min-w-48 flex-1 gap-2 text-[0.9375rem]">
+            <Field label="Góc cơ" value={angle.text} note={angle.note} />
+            <Field label="Cầu tay" value={bridge.name} note={bridge.why} />
+            <Field label="Ra cơ" value={delivery.name} note={delivery.why} />
+            <Field
+              label="Lực"
+              value={<span className="num">{ins.speed.level}/10</span>}
+              note={`Bi đi khoảng ${ins.speed.level} chiều dài bàn · ${numVi(ins.speed.V0)} m/s ở đầu cơ`}
+            />
+          </dl>
+        </div>
+      </Section>
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-3 px-1 text-[0.9375rem]">
         <div className="col-span-2">
           <dt className="text-sm text-muted">Dung sai hướng</dt>
           <dd className="num font-semibold">

@@ -2,9 +2,9 @@ import { motionCoeffs, slip } from '../engine/motion';
 import { strikeBall } from '../engine/resolve/cue';
 import { simulate, type SimResult, sampleTrack } from '../engine/simulate';
 import { effectivePhysics, type TableProfile } from '../engine/table';
-import type { BallId, BallState, CueStrike, CushionId } from '../engine/types';
+import type { BallId, BallState, CueStrike, CushionId, SimEvent } from '../engine/types';
 import { DEG } from '../engine/vec';
-import type { HumanInstruction, ShotFamily, SystemMatch } from './types';
+import type { BallContact, HumanInstruction, ShotFamily, SystemMatch } from './types';
 
 export const DEFAULT_TIP_UNIT_R = 0.15;
 
@@ -62,7 +62,7 @@ export function speedLevel(table: TableProfile, V0: number, theta: number): numb
   return level;
 }
 
-function strokeOf(strike: CueStrike, slidingAtImpact: boolean): HumanInstruction['stroke'] {
+export function strokeOf(strike: CueStrike, slidingAtImpact: boolean): HumanInstruction['stroke'] {
   const th = strike.theta / DEG;
   if (th > 45) return 'masse';
   if (th > 20 && Math.abs(strike.b) < 0.15) return 'bo';
@@ -97,6 +97,68 @@ export function aimDiamond(table: TableProfile, from: [number, number], phi: num
   return (from[1] + ((xl - from[0]) / dx) * dy) / D;
 }
 
+/**
+ * The first cue-ball → object-ball contact as a player reads it: thickness (§9: 1 − |sin cut|), which
+ * side, how far the cue ball deflects and how far the object ball rolls. Uses events only, so it also
+ * works on runs without recorded segments.
+ */
+export function contactOf(table: TableProfile, res: SimResult, cue: BallId): BallContact | undefined {
+  const hit = res.cueInfo.firstObjectHit;
+  if (!hit) return undefined;
+  const R = table.ballRadius;
+  const nx = hit.objPos[0] - hit.cuePos[0];
+  const ny = hit.objPos[1] - hit.cuePos[1];
+  const nl = Math.hypot(nx, ny);
+  const vl = Math.hypot(hit.vIn[0], hit.vIn[1]);
+  if (nl < 1e-9 || vl < 1e-9) return undefined;
+  const cosCut = (hit.vIn[0] * nx + hit.vIn[1] * ny) / (nl * vl);
+  const fraction = 1 - Math.sqrt(Math.max(0, 1 - cosCut * cosCut));
+  const crossZ = hit.vIn[0] * ny - hit.vIn[1] * nx;
+
+  // Ball centre at an event (cushion events are reported on the cushion line).
+  const centre = (e: SimEvent): [number, number] | undefined => {
+    if (e.type === 'ball-cushion') return [Math.min(table.L - R, Math.max(R, e.pos[0])), Math.min(table.W - R, Math.max(R, e.pos[1]))];
+    if (e.type === 'ball-ball') return e.pos;
+    return undefined;
+  };
+  const touches = (e: SimEvent, id: BallId) => (e.type === 'ball-cushion' && e.ball === id) || (e.type === 'ball-ball' && (e.a === id || e.b === id));
+  const restOf = (id: BallId): [number, number] => {
+    const b = res.final.find((f) => f.id === id);
+    return b ? [b.r[0], b.r[1]] : [hit.objPos[0], hit.objPos[1]];
+  };
+  const after = res.events.filter((e) => e.t > hit.t + 1e-9);
+
+  const next = after.find((e) => touches(e, cue));
+  const to = (next && centre(next)) ?? restOf(cue);
+  const cx = to[0] - hit.cuePos[0];
+  const cy = to[1] - hit.cuePos[1];
+  const chord = Math.hypot(cx, cy);
+  const stops = !next && chord < 3 * R;
+  const cueDeflectDeg = chord < 1e-6 ? 0 : Math.acos(Math.max(-1, Math.min(1, (cx * hit.vIn[0] + cy * hit.vIn[1]) / (chord * vl)))) / DEG;
+
+  let objectTravel = 0;
+  let prev: [number, number] = [hit.objPos[0], hit.objPos[1]];
+  for (const e of after) {
+    const p = touches(e, hit.other) ? centre(e) : undefined;
+    if (!p) continue;
+    objectTravel += Math.hypot(p[0] - prev[0], p[1] - prev[1]);
+    prev = p;
+  }
+  const rest = restOf(hit.other);
+  objectTravel += Math.hypot(rest[0] - prev[0], rest[1] - prev[1]);
+
+  return {
+    object: hit.other,
+    fraction,
+    label: thicknessLabel(fraction),
+    side: crossZ < 0 ? 'trái' : 'phải',
+    railsBefore: res.cueInfo.cushionHits.filter((h) => h.t < hit.t).length,
+    cueDeflectDeg,
+    cueAfter: stops ? 'stop' : cueDeflectDeg > 100 ? 'back' : 'forward',
+    objectTravelL: objectTravel / table.L,
+  };
+}
+
 export function buildInstruction(
   table: TableProfile,
   balls: BallState[],
@@ -113,18 +175,12 @@ export function buildInstruction(
   const aim: HumanInstruction['aim'] = { mode: family.firstContact === 'ball' ? 'ball-first' : 'rail-first' };
 
   const hit = res.cueInfo.firstObjectHit;
+  const contact = contactOf(table, res, cue);
+  aim.contact = contact;
   let slidingAtImpact = false;
-  if (family.firstContact === 'ball' && hit) {
-    const nx = hit.objPos[0] - hit.cuePos[0];
-    const ny = hit.objPos[1] - hit.cuePos[1];
-    const nl = Math.hypot(nx, ny);
-    const vl = Math.hypot(hit.vIn[0], hit.vIn[1]);
-    const cosCut = (hit.vIn[0] * nx + hit.vIn[1] * ny) / (nl * vl);
-    const sinCut = Math.sqrt(Math.max(0, 1 - cosCut * cosCut));
-    const fraction = 1 - sinCut;
-    const crossZ = hit.vIn[0] * ny - hit.vIn[1] * nx;
+  if (family.firstContact === 'ball' && hit && contact) {
     aim.ghostBall = { x: hit.cuePos[0], y: hit.cuePos[1] };
-    aim.thickness = { fraction, label: thicknessLabel(fraction), side: crossZ < 0 ? 'trái' : 'phải' };
+    aim.thickness = { fraction: contact.fraction, label: contact.label, side: contact.side };
     const p = effectivePhysics(table);
     const o = strikeBall(strike, table.ballRadius, table.ballMass, p);
     const u = slip(o.v, o.w, table.ballRadius);

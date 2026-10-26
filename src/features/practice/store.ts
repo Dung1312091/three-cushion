@@ -86,11 +86,13 @@ interface PracticeActions {
   setSort: (s: SortKey) => void;
   findShots: () => Promise<void>;
   selectOption: (id: string) => Promise<void>;
+  closeOption: () => void;
   setManual: (p: Partial<CueStrike>) => void;
   strikeManual: () => Promise<void>;
   tryVariant: (o: ShotOption) => void;
   analyzeManual: () => Promise<void>;
   playShot: (strike: CueStrike, source: CurrentShot['source'], optionId?: string) => Promise<void>;
+  continueFromShot: () => void;
   setPlaying: (p: boolean) => void;
   setSpeed: (s: PracticeState['playback']['speed']) => void;
   setLoop: (l: boolean) => void;
@@ -357,6 +359,7 @@ export const usePractice = create<PracticeState & PracticeActions>()((set, get) 
       set({ selectedId: id });
       await get().playShot(o.strike, 'option', id);
     },
+    closeOption: () => set({ selectedId: undefined }),
 
     setManual: (p) => {
       const s = get();
@@ -388,6 +391,16 @@ export const usePractice = create<PracticeState & PracticeActions>()((set, get) 
       playClock.t = -CUE_ANIM;
       set({ current, playback: { ...get().playback, playing: true } });
       sceneApi.invalidate();
+    },
+    /** Take the balls where the played shot left them as the new layout (undoable) and search again from there. */
+    continueFromShot: () => {
+      const s = get();
+      if (!s.current) return;
+      const next = { ...s.balls };
+      for (const b of s.current.result.final) next[b.id] = { x: b.r[0], y: b.r[1] };
+      for (const id of ['white', 'yellow', 'red'] as BallId[]) next[id] = constrain(s.table, next, id, next[id].x, next[id].y);
+      get().setLayout(next);
+      void get().findShots();
     },
     setPlaying: (playing) => {
       const c = get().current;
